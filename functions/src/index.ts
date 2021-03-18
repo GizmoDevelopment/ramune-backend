@@ -15,4 +15,4 @@ app.get("/dango", (req: express.Request, res: express.Response) => {
 app.get("/", returnAllShows);
 app.get("/:showId", returnRequestedShow);
 
-exports.app = functions.https.onRequest(app);
+exports.shows = functions.https.onRequest(app);
