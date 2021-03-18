@@ -28,16 +28,23 @@ export async function returnAllShows (_: Request, res: Response): Promise<void> 
 
 export async function returnRequestedShow (req: Request, res: Response): Promise<void> {
 
-    const { showId } = req.params;
+    const { showId, episodeId } = req.params;
 
     try {
 
         const
             show = db.collection("shows").doc(showId),
-            showDocument = await show.get();
+            showDocument = await show.get(),
+            showData = showDocument.data();
 
-        if (showDocument.exists) {
-            res.status(200).json(showDocument.data());
+        if (showDocument.exists && showData) {
+
+            if (episodeId && req.originalUrl.includes("/stream")) {
+                res.redirect(`${ process.env.VIDEO_ENDPOINT }/${ showData.id }/episodes/${ episodeId }.mp4`);
+            } else {
+                res.status(200).json(showData);
+            }
+
         } else {
             res.status(404).send("Show not found");
         }

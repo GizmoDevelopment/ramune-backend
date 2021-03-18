@@ -3,7 +3,7 @@ import * as express from "express";
 import * as functions from "firebase-functions";
 
 // Utils
-import { returnAllShows, returnRequestedShow } from "./routes/shows";
+import { returnAllShows, returnRequestedShow, returnRequestedEpisodeStream } from "./routes/shows";
 
 // Variables
 const app = express();
@@ -14,5 +14,6 @@ app.get("/dango", (req: express.Request, res: express.Response) => {
 
 app.get("/", returnAllShows);
 app.get("/:showId", returnRequestedShow);
+app.get("/:showId/episodes/:episodeId/stream", returnRequestedShow);
 
 exports.shows = functions.https.onRequest(app);
