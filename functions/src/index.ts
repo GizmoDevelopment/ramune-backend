@@ -16,4 +16,4 @@ app.get("/", returnAllShows);
 app.get("/:showId", returnRequestedShow);
 app.get("/:showId/episodes/:episodeId/stream", returnRequestedShow);
 
-exports.shows = functions.https.onRequest(app);
+exports.shows = functions.region("europe-west1").https.onRequest(app);
