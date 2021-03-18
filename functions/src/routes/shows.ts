@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 
 // Utils
-import { db } from "../config/firebase";
+import { db, constants } from "../config/firebase";
 
 // Types
 import { Show } from "../types";
@@ -40,7 +40,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
         if (showDocument.exists && showData) {
 
             if (episodeId && req.originalUrl.includes("/stream")) {
-                res.redirect(`${ process.env.VIDEO_ENDPOINT }/${ showData.id }/episodes/${ episodeId }.mp4`);
+                res.redirect(`${ constants.OVH_VIDEO_ENDPOINT }/${ showData.id }/episodes/${ episodeId }.mp4`);
             } else {
                 res.status(200).json(showData);
             }
