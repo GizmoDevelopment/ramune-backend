@@ -3,7 +3,7 @@ import * as express from "express";
 import * as functions from "firebase-functions";
 
 // Utils
-import { returnAllShows, returnRequestedShow, returnRequestedEpisodeStream } from "./routes/shows";
+import { returnAllShows, returnRequestedShow } from "./routes/shows";
 
 // Variables
 const app = express();
