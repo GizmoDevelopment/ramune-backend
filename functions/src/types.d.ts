@@ -1,9 +1,16 @@
 export interface Show {
+    id: string;
     title: string;
-    episodes: Record<string, Episode>;
+    poster_url: string;
+    seasons: Season[];
+}
+
+export interface Season {
+    title: string;
+    episodes: Episode[];
 }
 
 export interface Episode {
     title: string;
-    hash: string;
+    thumbnail_url: string;
 }
