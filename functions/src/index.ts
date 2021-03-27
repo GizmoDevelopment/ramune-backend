@@ -12,8 +12,8 @@ app.get("/dango", (req: express.Request, res: express.Response) => {
     res.status(200).send("daikazoku");
 });
 
-app.get("/", returnAllShows);
-app.get("/:showId", returnRequestedShow);
-app.get("/:showId/episodes/:episodeId/stream", returnRequestedShow);
+app.get("/shows", returnAllShows);
+app.get("/shows/:showId", returnRequestedShow);
+app.get("/shows/:showId/episodes/:episodeId/stream", returnRequestedShow);
 
 exports.ramune = functions.region("europe-west1").https.onRequest(app);
