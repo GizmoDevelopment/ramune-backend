@@ -9,6 +9,14 @@
       "npm --prefix \"$RESOURCE_DIR\" run build"
     ]
   },
+  "hosting": {
+    "rewrites": [
+      {
+        "source": "/ramune",
+        "function": "ramune-api"
+      }
+    ]
+  },
   "emulators": {
     "functions": {
       "port": 5001
