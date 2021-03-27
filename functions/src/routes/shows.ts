@@ -1,11 +1,26 @@
 // Modules
 import { Request, Response } from "express";
+import { DocumentSnapshot } from "@google-cloud/firestore";
 
 // Utils
 import { db, constants } from "../config/firebase";
 
 // Types
 import { Show } from "../types";
+
+function constructShowFromDocument (doc: DocumentSnapshot): Show | undefined {
+    
+    const constructedShow = {
+        id: doc.id,
+        ...doc.data()
+    } as Show;
+
+    if (constructedShow.title) {
+        return constructedShow;
+    } else {
+        return;
+    }
+}
 
 export async function returnAllShows (_: Request, res: Response): Promise<void> {
     try {
@@ -15,7 +30,8 @@ export async function returnAllShows (_: Request, res: Response): Promise<void> 
             shows = await db.collection("shows").get();
 
         shows.forEach(doc => {
-            filteredShows.push(doc.data() as Show);
+            const show = constructShowFromDocument(doc);
+            if (show) filteredShows.push(show);
         });
 
         res.status(200).json(filteredShows);
@@ -35,14 +51,14 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
         const
             show = db.collection("shows").doc(showId),
             showDocument = await show.get(),
-            showData = showDocument.data();
+            constructedShow = constructShowFromDocument(showDocument);
 
-        if (showDocument.exists && showData) {
+        if (showDocument.exists && constructedShow) {
 
             if (episodeId && req.originalUrl.includes("/stream")) {
-                res.redirect(`${ constants.OVH_VIDEO_ENDPOINT }/${ showData.id }/episodes/${ episodeId }.mp4`);
+                res.redirect(`${ constants.OVH_VIDEO_ENDPOINT }/${ constructedShow.id }/episodes/${ episodeId }.mp4`);
             } else {
-                res.status(200).json(showData);
+                res.status(200).json(constructedShow);
             }
 
         } else {
