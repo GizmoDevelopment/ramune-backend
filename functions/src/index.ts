@@ -1,12 +1,17 @@
 // Modules
 import * as express from "express";
 import * as functions from "firebase-functions";
+import * as cors from "cors";
 
 // Utils
 import { returnAllShows, returnRequestedShow } from "./routes/shows";
 
 // Variables
 const app = express();
+
+app.use(cors({
+    methods: [ "GET" ]
+}));
 
 app.get("/dango", (req: express.Request, res: express.Response) => {
     res.status(200).send("daikazoku");
