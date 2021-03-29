@@ -55,6 +55,42 @@ function getSeasonEpisodes (title, seasonTitle) {
     });
 }
 
+function generateSeason () {
+    return new Promise((res, _) => {
+
+        const seasonTitle = !seasonDir.match(/season/i) ? `Season ${ seasonDir }` : seasonDir;
+        const urlifiedSeasonName = seasonTitle.toLowerCase().replace(/\s/g, "-");
+    
+        // Dodging ratelimits
+        setTimeout(async () => {
+            
+            const episodeList = (await getSeasonEpisodes(map.title, seasonTitle).catch(console.error)) || [];
+            const episodes = Array(episodeList.length);
+    
+            fs.readdirSync(path.join(showDir, seasonDir)).forEach(episode => {
+    
+                const episodeIndex = parseInt(episode);
+    
+                episodes[episodeIndex - 1] = {
+                    thumbnail_url: `${ CDN_ENDPOINT }/${ map.id }/${ urlifiedSeasonName }/${ episodeIndex }.png`,
+                    title: episodeList?.[episodeIndex - 1]?.title
+                };
+    
+            });
+    
+            map.seasons.push({
+                title: seasonTitle,
+                episodes
+            });
+            
+            console.log(`Finished '${ seasonTitle }'`);
+            res();
+    
+        }, index * 6000);
+
+    });
+}
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -73,42 +109,20 @@ rl.question("Enter title: ", title => {
             map.id = id;
             map.poster_url = `${ CDN_ENDPOINT }/${ map.id }/poster.png`;
 
-            rl.question("Enter show directory path: ", _showDir => {
+            rl.question("Enter show directory path: ", async _showDir => {
+
+                const seasonPromises = [];
 
                 showDir = _showDir;
 
                 if (!fs.existsSync(showDir)) throw Error("Invalid directory");
 
                 fs.readdirSync(showDir).forEach((seasonDir, index) => {
-
-                    const seasonTitle = !seasonDir.match(/season/i) ? `Season ${ seasonDir }` : seasonDir;
-                    const urlifiedSeasonName = seasonTitle.toLowerCase().replace(/\s/g, "-");
-                
-                    // Dodging ratelimits
-                    setTimeout(async () => {
-                        
-                        const episodeList = (await getSeasonEpisodes(map.title, seasonTitle).catch(console.error)) || [];
-                        const episodes = Array(episodeList.length);
-                
-                        fs.readdirSync(path.join(showDir, seasonDir)).forEach(episode => {
-                
-                            const episodeIndex = parseInt(episode);
-                
-                            episodes[episodeIndex - 1] = {
-                                thumbnail_url: `${ CDN_ENDPOINT }/${ map.id }/${ urlifiedSeasonName }/${ episodeIndex }.png`,
-                                title: episodeList?.[episodeIndex - 1]?.title
-                            };
-                
-                        });
-                
-                        map.seasons.push({
-                            title: seasonTitle,
-                            episodes
-                        });
-                
-                    }, index * 6000);
-                
+                    seasonPromises.push(generateSeason());        
                 });
+
+                await Promise.all(seasonPromises);
+                rl.close();
 
             });
 
