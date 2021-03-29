@@ -55,7 +55,7 @@ function getSeasonEpisodes (title, seasonTitle) {
     });
 }
 
-function generateSeason () {
+function generateSeason (seasonDir, index) {
     return new Promise((res, _) => {
 
         const seasonTitle = !seasonDir.match(/season/i) ? `Season ${ seasonDir }` : seasonDir;
@@ -118,10 +118,11 @@ rl.question("Enter title: ", title => {
                 if (!fs.existsSync(showDir)) throw Error("Invalid directory");
 
                 fs.readdirSync(showDir).forEach((seasonDir, index) => {
-                    seasonPromises.push(generateSeason());        
+                    seasonPromises.push(generateSeason(seasonDir, index));        
                 });
 
                 await Promise.all(seasonPromises);
+                fs.writeFileSync(path.join(showDir, "data.json"), JSON.stringify(map, null, 2));
                 rl.close();
 
             });
@@ -134,14 +135,4 @@ rl.question("Enter title: ", title => {
 
 rl.on("close", () => {
     process.exit(0);
-});
-
-process.on("beforeExit", () => {
-
-    console.log(map);
-
-    if (showDir) {
-        fs.writeFileSync(path.join(showDir, "data.json"), JSON.stringify(map, null, 2));
-    }
-
 });
