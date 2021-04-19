@@ -1,7 +1,7 @@
 // Modules
-import * as express from "express";
+import express from "express";
 import * as functions from "firebase-functions";
-import * as cors from "cors";
+import cors from "cors";
 
 // Utils
 import { returnAllShows, returnRequestedShow } from "@routes/shows";
