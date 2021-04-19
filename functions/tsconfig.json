@@ -1,24 +1,24 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "strict": true,
-    "target": "es2017",
-    "noImplicitAny": true,
-	"esModuleInterop": true,
-	"baseUrl": "src",
-	"paths": {
-		"@/*": ["/*"],
-		"@typings/*": ["typings/*"],
-		"@routes/*": ["routes/*"],
-		"@config/*": ["config/*"]
-	}
-  },
-  "compileOnSave": true,
-  "include": [
-    "src"
-  ]
+	"compilerOptions": {
+		"module": "commonjs",
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"outDir": "lib",
+		"sourceMap": true,
+		"strict": true,
+		"target": "es2017",
+		"noImplicitAny": true,
+		"esModuleInterop": true,
+		"baseUrl": "src",
+		"paths": {
+			"@/*": ["/*"],
+			"@typings/*": ["typings/*"],
+			"@routes/*": ["routes/*"],
+			"@config/*": ["config/*"]
+		}
+	},
+	"compileOnSave": true,
+	"include": [
+		"src"
+	]
 }

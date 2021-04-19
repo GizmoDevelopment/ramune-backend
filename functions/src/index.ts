@@ -10,11 +10,11 @@ import { returnAllShows, returnRequestedShow } from "@routes/shows";
 const app = express();
 
 app.use(cors({
-    methods: [ "GET" ]
+	methods: [ "GET" ]
 }));
 
 app.get("/dango", (req: express.Request, res: express.Response) => {
-    res.status(200).send("daikazoku");
+	res.status(200).send("daikazoku");
 });
 
 app.get("/shows", returnAllShows);
