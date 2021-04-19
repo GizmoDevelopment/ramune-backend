@@ -4,7 +4,7 @@ import * as functions from "firebase-functions";
 import * as cors from "cors";
 
 // Utils
-import { returnAllShows, returnRequestedShow } from "./routes/shows";
+import { returnAllShows, returnRequestedShow } from "@routes/shows";
 
 // Variables
 const app = express();

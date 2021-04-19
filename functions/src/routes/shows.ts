@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { DocumentSnapshot } from "@google-cloud/firestore";
 
 // Utils
-import { db, constants } from "../config/firebase";
+import { db, constants } from "@config/firebase";
 
 // Types
 import { Show } from "@typings/types";
