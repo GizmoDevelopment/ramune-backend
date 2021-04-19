@@ -7,7 +7,12 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+	"baseUrl": "src",
+	"paths": {
+		"@/*": ["/*"],
+		"@typings/*": ["typings/*"]
+	}
   },
   "compileOnSave": true,
   "include": [
