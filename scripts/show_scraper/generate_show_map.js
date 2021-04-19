@@ -145,7 +145,7 @@ rl.question("Enter title: ", title => {
 					
 					const anime = await getAnimeInformation(malId);
 
-					map.description = anime.synopsis;
+					map.description = anime.synopsis.replace("[Written by MAL Rewrite]", "(Source: MyAnimeList)");
 
 					fs.writeFileSync(path.join(showDir, "data.json"), JSON.stringify(map, null, 2));
                 	rl.close();
