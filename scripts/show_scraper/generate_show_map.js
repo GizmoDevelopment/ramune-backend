@@ -14,7 +14,7 @@ const map = {
     id: "",
     title: "",
 	description: "",
-    score: "",
+    score: 0,
     poster_url: "",
     seasons: []
 };
@@ -111,7 +111,7 @@ rl.question("Enter title: ", title => {
 
     rl.question("Enter score: ", score => {
 
-        map.score = score;
+        map.score = parseInt(score);
 
         rl.question("Enter DB ID: ", id => {
 
