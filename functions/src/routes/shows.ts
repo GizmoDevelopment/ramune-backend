@@ -6,7 +6,7 @@ import { DocumentSnapshot } from "@google-cloud/firestore";
 import { db, constants } from "../config/firebase";
 
 // Types
-import { Show } from "../types";
+import { Show } from "@typings/shows";
 
 function constructShowFromDocument (doc: DocumentSnapshot): Show | undefined {
     
