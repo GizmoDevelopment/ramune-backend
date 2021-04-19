@@ -34,11 +34,11 @@ export async function returnAllShows (_: Request, res: Response): Promise<void> 
             if (show) filteredShows.push(show);
         });
 
-        res.status(200).json(filteredShows);
+        res.status(200).json({ type: "success", data: filteredShows });
 
     } catch (err) {
         console.error(new Error(err));
-        res.status(500).send("Something went wrong");
+        res.status(500).json({ type: "error", message: "Something went wrong" });
     }
 }
 
@@ -58,16 +58,16 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
             if (episodeId && req.originalUrl.includes("/stream")) {
                 res.redirect(`${ constants.OVH_VIDEO_ENDPOINT }/${ constructedShow.id }/episodes/${ episodeId }.mp4`);
             } else {
-                res.status(200).json(constructedShow);
+                res.status(200).json({ type: "success", data: constructedShow });
             }
 
         } else {
-            res.status(404).send("Show not found");
+            res.status(404).json({ type: "error", message: "Show not found" });
         }
 
     } catch (err) {
         console.error(new Error(err));
-        res.status(500).send("Something went wrong");
+        res.status(500).json({ type: "error", message: "Something went wrong" });
     }
 
 }
