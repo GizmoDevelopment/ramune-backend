@@ -13,6 +13,7 @@ let showDir;
 const map = {
     id: "",
     title: "",
+	description: "",
     score: "",
     poster_url: "",
     seasons: []
@@ -38,10 +39,14 @@ function GET (path) {
     });
 }
 
+async function getAnimeMalId (title, seasonTitle) {
+	return (await GET(encodeURI(`${ ANIME_ENDPOINT }/search/anime?q=${ title } ${ seasonTitle && seasonTitle.match(/season 1/i) ? "" : seasonTitle.replace(/part 1/i, "") }`))).results[0].mal_id;
+}
+
 function getSeasonEpisodes (title, seasonTitle) {
     return new Promise(async (res, _) => {
 
-        const animeId = (await GET(encodeURI(`${ ANIME_ENDPOINT }/search/anime?q=${ title } ${ seasonTitle.match(/season 1/i) ? "" : seasonTitle.replace(/part 1/i, "") }`))).results[0].mal_id;
+        const animeId = await getAnimeMalId(title, seasonTitle);
 
         // Dodging ratelimits
         setTimeout(async () => {
@@ -53,6 +58,10 @@ function getSeasonEpisodes (title, seasonTitle) {
         }, 2000);
 
     });
+}
+
+function getAnimeInformation (animeId) {
+	return GET(encodeURI(`${ ANIME_ENDPOINT }/search/anime/${ animeId }`));
 }
 
 function generateSeason (seasonDir, index) {
@@ -109,6 +118,8 @@ rl.question("Enter title: ", title => {
             map.id = id;
             map.poster_url = `${ CDN_ENDPOINT }/${ map.id }/poster.png`;
 
+			const malId = 0;
+
             rl.question("Enter show directory path: ", async _showDir => {
 
                 const seasonPromises = [];
@@ -118,12 +129,28 @@ rl.question("Enter title: ", title => {
                 if (!fs.existsSync(showDir)) throw Error("Invalid directory");
 
                 fs.readdirSync(showDir).forEach((seasonDir, index) => {
-                    seasonPromises.push(generateSeason(seasonDir, index));        
+
+					if (index === 0) {
+						getAnimeMalId(title).then(id => {
+							malId = id;
+						});
+					}
+					
+                    seasonPromises.push(generateSeason(seasonDir, index + 1));        
                 });
 
                 await Promise.all(seasonPromises);
-                fs.writeFileSync(path.join(showDir, "data.json"), JSON.stringify(map, null, 2));
-                rl.close();
+
+				setTimeout(async () => {
+					
+					const anime = await getAnimeInformation(malId);
+
+					map.description = anime.synopsis;
+
+					fs.writeFileSync(path.join(showDir, "data.json"), JSON.stringify(map, null, 2));
+                	rl.close();
+
+				}, 3000);
 
             });
 
