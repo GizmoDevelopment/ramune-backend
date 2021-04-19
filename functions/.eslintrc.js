@@ -11,6 +11,16 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended"
   ],
+  settings: {
+	"import/parsers": {
+		"@typescript-eslint/parser": [".ts", ".tsx"]
+	},
+	"import/resolver": {
+		"typescript": {
+			"alwaysTryTypes": true,
+		}
+	}
+  },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: ["tsconfig.json", "tsconfig.dev.json"],
@@ -26,6 +36,7 @@ module.exports = {
   rules: {
     quotes: ["error", "double"],
     "@typescript-eslint/no-var-requires": "off",
-    semi: ["error"]
+    semi: ["error"],
+	"import/no-unresolved": "error"
   },
 };
