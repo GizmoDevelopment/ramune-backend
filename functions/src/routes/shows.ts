@@ -3,22 +3,52 @@ import { Request, Response } from "express";
 import { DocumentSnapshot } from "@google-cloud/firestore";
 
 // Utils
-import { db, constants } from "@config/firebase";
+import { db } from "@config/firebase";
+import { ENDPOINTS } from "@config/constants";
+import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
-import { Show } from "@typings/types";
+import { Show, Episode, StoredShow, StoredSeason, StoredEpisode } from "@typings/types";
 
-function constructShowFromDocument (doc: DocumentSnapshot): Show | undefined {
+function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
-	const constructedShow = {
-		id: doc.id,
-		...doc.data()
-	} as Show;
+	const
+		showCDNEndpoint = getShowCDNEndpoint(doc.id),
+		showData = doc.data() as StoredShow | undefined;
 
-	if (constructedShow.title) {
-		return constructedShow;
+	if (showData) {
+
+		// Add poster and thumbnail URLs
+		showData.seasons.forEach((season: StoredSeason, index: number) => {
+
+			const friendlySeasonTitle = `season-${ index + 1 }`;
+
+			showData.seasons[index] = {
+				...season,
+				episodes: season.episodes.map((episode: StoredEpisode, index: number): Episode => {
+					return {
+						...episode,
+						thumbnail_url: `${ showCDNEndpoint }/${ friendlySeasonTitle }/${ index + 1 }.jpg`
+					};
+				})	
+			};
+
+		});
+
+		const constructedShow = {
+			id: doc.id,
+			poster_url: `${ showCDNEndpoint }/poster.jpg`,
+			...showData
+		} as Show;
+	
+		if (constructedShow.title) {
+			return constructedShow;
+		} else {
+			return null;
+		}
+
 	} else {
-		return;
+		return null;
 	}
 }
 
@@ -56,7 +86,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 		if (showDocument.exists && constructedShow) {
 
 			if (episodeId && req.originalUrl.includes("/stream")) {
-				res.redirect(`${ constants.OVH_VIDEO_ENDPOINT }/${ constructedShow.id }/episodes/${ episodeId }.mp4`);
+				res.redirect(`${ ENDPOINTS.CDN }/${ constructedShow.id }/episodes/${ episodeId }.mp4`);
 			} else {
 				res.status(200).json({ type: "success", data: constructedShow });
 			}
