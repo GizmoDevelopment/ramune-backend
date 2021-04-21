@@ -21,7 +21,7 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 		// Add poster and thumbnail URLs
 		showData.seasons.forEach((season: StoredSeason, index: number) => {
 
-			const friendlySeasonTitle = `season-${ index + 1 }`;
+			const friendlySeasonTitle = season.title.toLowerCase().replace(/\s/g, "-");
 
 			showData.seasons[index] = {
 				...season,
