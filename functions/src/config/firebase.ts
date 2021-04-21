@@ -13,8 +13,5 @@ admin.initializeApp({
 
 // Variables
 const db = admin.firestore();
-const constants = {
-	OVH_VIDEO_ENDPOINT: functions.config().ovh.endpoint
-};
 
-export { admin, db, constants };
+export { admin, db };
