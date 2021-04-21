@@ -14,7 +14,8 @@
 			"@/*": ["/*"],
 			"@typings/*": ["typings/*"],
 			"@routes/*": ["routes/*"],
-			"@config/*": ["config/*"]
+			"@config/*": ["config/*"],
+			"@utils/*": ["utils/*"]
 		}
 	},
 	"compileOnSave": true,
