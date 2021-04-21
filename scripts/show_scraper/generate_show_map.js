@@ -6,7 +6,7 @@ const https = require("https");
 
 // Constants
 const ANIME_ENDPOINT = "https://api.jikan.moe/v3";
-const CDN_ENDPOINT = "https://www.gizmo.moe/cdn/ramune";
+const CDN_ENDPOINT = "https://ramune-cdn.gizmo.moe/";
 
 // Variables
 let showDir;
@@ -81,7 +81,7 @@ function generateSeason (seasonDir, index) {
                 const episodeIndex = parseInt(episode);
     
                 episodes[episodeIndex - 1] = {
-                    thumbnail_url: `${ CDN_ENDPOINT }/${ map.id }/${ urlifiedSeasonName }/${ episodeIndex }.png`,
+                    thumbnail: episodeIndex,
                     title: episodeList?.[episodeIndex - 1]?.title
                 };
     
@@ -116,7 +116,7 @@ rl.question("Enter title: ", title => {
         rl.question("Enter DB ID: ", id => {
 
             map.id = id;
-            map.poster_url = `${ CDN_ENDPOINT }/${ map.id }/poster.png`;
+            map.poster = id;
 
 			const malId = 0;
 
