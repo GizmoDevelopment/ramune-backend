@@ -4,8 +4,8 @@ mkdir episodes
 mkdir subtitles
 
 let INDEX=1
-let SUBTITLE_TRACK=1 # ID of subtitle track to use
-let AUDIO_TRACK=1 # ID of audio track to use
+let SUBTITLE_TRACK=0 # ID of subtitle track to use
+let AUDIO_TRACK=0 # ID of audio track to use
 
 for FILE in ./*.mkv; do
 
