@@ -86,7 +86,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 		if (showDocument.exists && constructedShow) {
 
 			if (episodeId && req.originalUrl.includes("/stream")) {
-				res.redirect(`${ ENDPOINTS.CDN }/${ constructedShow.id }/episodes/${ episodeId }.mp4`);
+				res.redirect(`${ ENDPOINTS.VIDEO_CDN }/${ constructedShow.id }/episodes/${ episodeId }.mp4`);
 			} else {
 				res.status(200).json({ type: "success", data: constructedShow });
 			}
