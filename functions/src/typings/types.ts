@@ -11,6 +11,7 @@ export interface StoredSeason {
 
 export interface StoredEpisode {
 	title: string;
+	languages: string[];
 }
 
 export interface Show {
@@ -29,4 +30,5 @@ export interface Season {
 export interface Episode {
 	title: string;
 	thumbnail_url: string;
+	languages: string[];
 }
