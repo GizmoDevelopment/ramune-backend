@@ -25,7 +25,7 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 				episodes: season.episodes.map((episode: StoredEpisode, index: number): Episode => {
 
 					const
-						episodeCDNEndpoint = `${ showCDNEndpoint }/${ index + 1 }`,
+						episodeCDNEndpoint = `${ showCDNEndpoint }/episodes/${ index + 1 }`,
 						subtitleMap: Record<string, string> = {};
 
 					episode.subtitles.forEach((lang: string) => {
