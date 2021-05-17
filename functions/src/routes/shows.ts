@@ -8,7 +8,7 @@ import { ENDPOINTS } from "@config/constants";
 import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
-import { Show, Episode, StoredShow, StoredSeason, StoredEpisode } from "@typings/types";
+import { Show, Episode, StoredShow, StoredSeason, StoredEpisode, Season } from "@typings/types";
 
 function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
@@ -18,35 +18,38 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
 	if (showData) {
 
-		// Add poster and thumbnail URLs
-		showData.seasons.forEach((season: StoredSeason, index: number) => {
-
-			const friendlySeasonTitle = season.title.toLowerCase().replace(/\s/g, "-");
-
-			showData.seasons[index] = {
+		// Convert types and inject missing properties
+		const constructedSeasons: Season[] = showData.seasons.map((season: StoredSeason): Season => {
+			return {
 				...season,
 				episodes: season.episodes.map((episode: StoredEpisode, index: number): Episode => {
+
+					const
+						episodeCDNEndpoint = `${ showCDNEndpoint }/${ index + 1 }`,
+						subtitleMap: Record<string, string> = {};
+
+					episode.subtitles.forEach((lang: string) => {
+						subtitleMap[lang] = `${ episodeCDNEndpoint }/subtitles/${ lang }.vtt`;
+					});
+
 					return {
 						...episode,
-						thumbnail_url: `${ showCDNEndpoint }/${ friendlySeasonTitle }/${ index + 1 }.jpg`
+						thumbnail_url: `${ episodeCDNEndpoint }/thumbnail.jpg`,
+						subtitles: subtitleMap
 					};
-				})	
-			};
 
+				})
+			};
 		});
 
 		const constructedShow = {
 			id: doc.id,
 			poster_url: `${ showCDNEndpoint }/poster.jpg`,
-			...showData
+			...showData,
+			seasons: constructedSeasons
 		} as Show;
 	
-		if (constructedShow.title) {
-			return constructedShow;
-		} else {
-			return null;
-		}
-
+		return constructedShow;
 	} else {
 		return null;
 	}
