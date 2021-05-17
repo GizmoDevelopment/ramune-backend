@@ -28,8 +28,8 @@ rl.question("Enter data.json path: ", dataFile => {
         .firestore()
         .collection("shows")
         .doc(data.id)
-        .set(data).then(() => {
-            console.log("Done!");
+        .set(data).then(res => {
+            console.log(res);
             process.exit(0);
         }).catch(err => {
             throw Error(err);
