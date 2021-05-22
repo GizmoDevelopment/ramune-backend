@@ -18,7 +18,7 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
 	if (showData) {
 
-		let episodeIDCounter = 1;
+		let episodeIDCounter = 0;
 
 		// Convert types and inject missing properties
 		const constructedSeasons: Season[] = showData.seasons.map((season: StoredSeason, index: number): Season => {
@@ -27,11 +27,11 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 				id: index + 1,
 				episodes: season.episodes.map((episode: StoredEpisode): Episode => {
 
+					episodeIDCounter++;
+
 					const
 						episodeCDNEndpoint = `${ showCDNEndpoint }/episodes/${ episodeIDCounter }`,
 						subtitleMap: Record<string, string> = {};
-
-					episodeIDCounter++;
 
 					episode.subtitles.forEach((lang: string) => {
 						subtitleMap[lang] = `${ episodeCDNEndpoint }/subtitles/${ lang }.vtt`;
