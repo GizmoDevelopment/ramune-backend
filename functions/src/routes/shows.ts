@@ -18,15 +18,20 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
 	if (showData) {
 
+		let episodeIDCounter = 1;
+
 		// Convert types and inject missing properties
-		const constructedSeasons: Season[] = showData.seasons.map((season: StoredSeason): Season => {
+		const constructedSeasons: Season[] = showData.seasons.map((season: StoredSeason, index: number): Season => {
 			return {
 				...season,
-				episodes: season.episodes.map((episode: StoredEpisode, index: number): Episode => {
+				id: index + 1,
+				episodes: season.episodes.map((episode: StoredEpisode): Episode => {
 
 					const
-						episodeCDNEndpoint = `${ showCDNEndpoint }/episodes/${ index + 1 }`,
+						episodeCDNEndpoint = `${ showCDNEndpoint }/episodes/${ episodeIDCounter }`,
 						subtitleMap: Record<string, string> = {};
+
+					episodeIDCounter++;
 
 					episode.subtitles.forEach((lang: string) => {
 						subtitleMap[lang] = `${ episodeCDNEndpoint }/subtitles/${ lang }.vtt`;
@@ -34,6 +39,7 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
 					return {
 						...episode,
+						id: episodeIDCounter,
 						thumbnail_url: `${ episodeCDNEndpoint }/thumbnail.jpg`,
 						subtitles: subtitleMap
 					};
