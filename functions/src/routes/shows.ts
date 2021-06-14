@@ -8,7 +8,8 @@ import { ENDPOINTS } from "@config/constants";
 import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
-import { Show, Episode, StoredShow, StoredSeason, StoredEpisode, Season } from "@typings/types";
+import { Show, Episode, Season } from "@typings/show";
+import { StoredShow, StoredSeason, StoredEpisode } from "@typings/database";
 
 function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
@@ -88,16 +89,21 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 	try {
 
 		const
-			show = db.collection("shows").doc(showId),
-			showDocument = await show.get(),
-			constructedShow = constructShowFromDocument(showDocument);
+			showQuery = db.collection("shows").doc(showId),
+			showDocument = await showQuery.get();
 
-		if (showDocument.exists && constructedShow) {
+		if (showDocument.exists) {
 
-			if (episodeId && req.originalUrl.includes("/stream")) {
-				res.redirect(`${ ENDPOINTS.VIDEO_CDN }/shows/${ constructedShow.id }/episodes/${ episodeId }.mp4`);
+			const show = constructShowFromDocument(showDocument);
+
+			if (show) {
+				if (episodeId && req.originalUrl.includes("/stream")) {
+					res.redirect(`${ENDPOINTS.VIDEO_CDN}/shows/${ show.id }/episodes/${ episodeId }.mp4`);
+				} else {
+					res.status(200).json({ type: "success", data: show });
+				}
 			} else {
-				res.status(200).json({ type: "success", data: constructedShow });
+				res.status(404).json({ type: "error", message: "Show not found" });
 			}
 
 		} else {
