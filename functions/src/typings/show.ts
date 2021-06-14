@@ -1,20 +1,3 @@
-export interface StoredShow {
-	title: string;
-	description: string;
-	seasons: StoredSeason[];
-}
-
-export interface StoredSeason {
-	id: string;
-	title: string;
-	episodes: StoredEpisode[];
-}
-
-export interface StoredEpisode {
-	title: string;
-	subtitles: string[];
-}
-
 export interface Show {
 	id: string;
 	title: string;
@@ -34,4 +17,14 @@ export interface Episode {
 	title: string;
 	thumbnail_url: string;
 	subtitles: Record<string, string>;
+	data: EpisodeData;
+}
+
+export interface EpisodeData {
+	effects: EpisodeEffect[];
+}
+
+export interface EpisodeEffect {
+	engine: "tsparticles";
+	data: any;
 }
