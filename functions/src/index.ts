@@ -13,7 +13,7 @@ app.use(cors({
 	methods: [ "GET" ]
 }));
 
-app.get("/dango", (req: express.Request, res: express.Response) => {
+app.get("/dango", (_, res: express.Response) => {
 	res.status(200).send("daikazoku");
 });
 
