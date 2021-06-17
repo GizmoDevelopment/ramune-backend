@@ -8,7 +8,6 @@ export interface Show {
 
 export interface Season {
 	id: number;
-	title: string;
 	episodes: Episode[];
 }
 
