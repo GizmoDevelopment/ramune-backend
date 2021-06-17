@@ -14,48 +14,41 @@ import { StoredShow, StoredSeason, StoredEpisode } from "@typings/database";
 function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
 	const
-		showCDNEndpoint = getShowCDNEndpoint(doc.id),
+		SHOW_CDN_ENDPOINT = getShowCDNEndpoint(doc.id),
 		showData = doc.data() as StoredShow | undefined;
 
 	if (showData) {
 
-		let episodeIDCounter = 0;
-
 		// Convert types and inject missing properties
-		const constructedSeasons: Season[] = showData.seasons.map((season: StoredSeason, index: number): Season => {
+		const constructedSeasons: Season[] = showData.seasons.map((season: StoredSeason): Season => {
 			return {
 				...season,
-				id: index + 1,
 				episodes: season.episodes.map((episode: StoredEpisode): Episode => {
 
-					episodeIDCounter++;
+					const EPISODE_CDN_ENDPOINT = `${ SHOW_CDN_ENDPOINT }/episodes/${ episode.id }`;
 
-					const
-						episodeCDNEndpoint = `${ showCDNEndpoint }/episodes/${ episodeIDCounter }`,
-						subtitleMap: Record<string, string> = {};
-
-					episode.subtitles.forEach((lang: string) => {
-						subtitleMap[lang] = `${ episodeCDNEndpoint }/subtitles/${ lang }.vtt`;
+					const subtitles: Record<string, string> = {};
+					
+					episode.subtitles.forEach((lang: string): string => {
+						return `${ EPISODE_CDN_ENDPOINT }/subtitles/${ lang }.vtt`;
 					});
 
 					return {
 						...episode,
-						id: episodeIDCounter,
-						thumbnail_url: `${ episodeCDNEndpoint }/thumbnail.jpg`,
-						subtitles: subtitleMap
+						thumbnail_url: `${ EPISODE_CDN_ENDPOINT }/thumbnail.jpg`,
+						subtitles
 					};
-
 				})
-			};
+			}
 		});
 
-		const constructedShow = {
+		const constructedShow: Show = {
 			id: doc.id,
-			poster_url: `${ showCDNEndpoint }/poster.jpg`,
+			poster_url: `${ SHOW_CDN_ENDPOINT }/poster.jpg`,
 			...showData,
 			seasons: constructedSeasons
-		} as Show;
-	
+		};
+
 		return constructedShow;
 	} else {
 		return null;
@@ -98,7 +91,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 
 			if (show) {
 				if (episodeId && req.originalUrl.includes("/stream")) {
-					res.redirect(`${ENDPOINTS.VIDEO_CDN}/shows/${ show.id }/episodes/${ episodeId }.mp4`);
+					res.redirect(`${ ENDPOINTS.VIDEO_CDN }/shows/${ show.id }/episodes/${ episodeId }.mp4`);
 				} else {
 					res.status(200).json({ type: "success", data: show });
 				}
