@@ -8,12 +8,12 @@ export interface StoredShow {
 }
 
 export interface StoredSeason {
-	id: string;
-	title: string;
+	id: number;
 	episodes: StoredEpisode[];
 }
 
 export interface StoredEpisode {
+	id: number;
 	title: string;
 	subtitles: string[];
 	data: EpisodeData;
