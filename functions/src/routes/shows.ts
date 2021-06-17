@@ -39,7 +39,7 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 						subtitles
 					};
 				})
-			}
+			};
 		});
 
 		const constructedShow: Show = {
