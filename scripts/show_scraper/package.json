@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "I'm sorry",
   "scripts": {
-    "generate": "node generate_show_map.js",
     "upload": "node -r dotenv/config upload_show_map.js"
   },
   "author": "",
