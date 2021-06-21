@@ -8,10 +8,10 @@ import { ENDPOINTS } from "@config/constants";
 import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
-import { Show, Episode, Season } from "@typings/show";
+import { Show, Episode, Season, ShowHusk } from "@typings/show";
 import { StoredShow, StoredSeason, StoredEpisode } from "@typings/database";
 
-function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
+function constructShowFromDocument(doc: DocumentSnapshot, includeEpisodes: boolean): ShowHusk | Show | null {
 
 	const
 		SHOW_CDN_ENDPOINT = getShowCDNEndpoint(doc.id),
@@ -19,37 +19,42 @@ function constructShowFromDocument (doc: DocumentSnapshot): Show | null {
 
 	if (showData) {
 
-		// Convert types and inject missing properties
-		const constructedSeasons: Season[] = showData.seasons.map((season: StoredSeason): Season => {
-			return {
-				...season,
-				episodes: season.episodes.map((episode: StoredEpisode): Episode => {
-
-					const EPISODE_CDN_ENDPOINT = `${ SHOW_CDN_ENDPOINT }/episodes/${ episode.id }`;
-
-					const subtitles: Record<string, string> = {};
-					
-					episode.subtitles.forEach((lang: string): string => {
-						return `${ EPISODE_CDN_ENDPOINT }/subtitles/${ lang }.vtt`;
-					});
-
-					return {
-						...episode,
-						thumbnail_url: `${ EPISODE_CDN_ENDPOINT }/thumbnail.jpg`,
-						subtitles
-					};
-				})
-			};
-		});
-
-		const constructedShow: Show = {
+		const constructedShow: ShowHusk = {
 			id: doc.id,
-			poster_url: `${ SHOW_CDN_ENDPOINT }/poster.jpg`,
-			...showData,
-			seasons: constructedSeasons
+			poster_url: `${SHOW_CDN_ENDPOINT}/poster.jpg`,
+			...showData
 		};
 
-		return constructedShow;
+		if (includeEpisodes) {
+
+			// Convert types and inject missing properties
+			(constructedShow as Show).seasons = showData.seasons.map((season: StoredSeason): Season => {
+				return {
+					...season,
+					episodes: season.episodes.map((episode: StoredEpisode): Episode => {
+
+						const EPISODE_CDN_ENDPOINT = `${SHOW_CDN_ENDPOINT}/episodes/${episode.id}`;
+
+						const subtitles: Record<string, string> = {};
+
+						episode.subtitles.forEach((lang: string): string => {
+							return `${EPISODE_CDN_ENDPOINT}/subtitles/${lang}.vtt`;
+						});
+
+						return {
+							...episode,
+							thumbnail_url: `${EPISODE_CDN_ENDPOINT}/thumbnail.jpg`,
+							subtitles
+						};
+					})
+				};
+			});
+
+			return constructedShow as Show;
+		} else {
+			return constructedShow as ShowHusk;
+		}
+
 	} else {
 		return null;
 	}
@@ -59,11 +64,11 @@ export async function returnAllShows (_: Request, res: Response): Promise<void> 
 	try {
 
 		const
-			filteredShows: Show[] = [],
+			filteredShows: ShowHusk[] = [],
 			shows = await db.collection("shows").get();
 
 		shows.forEach(doc => {
-			const show = constructShowFromDocument(doc);
+			const show = constructShowFromDocument(doc, false);
 			if (show) filteredShows.push(show);
 		});
 
@@ -87,7 +92,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 
 		if (showDocument.exists) {
 
-			const show = constructShowFromDocument(showDocument);
+			const show = constructShowFromDocument(showDocument, true);
 
 			if (show) {
 				if (episodeId && req.originalUrl.includes("/stream")) {

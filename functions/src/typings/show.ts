@@ -1,8 +1,11 @@
-export interface Show {
+export interface ShowHusk {
 	id: string;
 	title: string;
 	description: string;
 	poster_url: string;
+}
+
+export interface Show extends ShowHusk {
 	seasons: Season[];
 }
 
