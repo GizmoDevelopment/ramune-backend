@@ -45,6 +45,7 @@ for index, mal_id in enumerate(mal_id_list):
 			"id": index,
 			"title": mal_anime_episode["title"],
 			"subtitles": [ "en", "ja" ],
+			"duration": 0,
 			"data": {}
 		})
 
