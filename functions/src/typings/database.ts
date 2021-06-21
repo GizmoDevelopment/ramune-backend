@@ -16,5 +16,6 @@ export interface StoredEpisode {
 	id: number;
 	title: string;
 	subtitles: string[];
+	duration: number;
 	data: EpisodeData;
 }
