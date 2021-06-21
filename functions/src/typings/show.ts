@@ -16,6 +16,7 @@ export interface Episode {
 	title: string;
 	thumbnail_url: string;
 	subtitles: Record<string, string>;
+	duration: number;
 	data: EpisodeData;
 }
 
