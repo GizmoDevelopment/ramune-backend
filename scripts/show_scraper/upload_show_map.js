@@ -16,9 +16,9 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("Enter data.json path: ", dataFile => {
+rl.question("Enter path to *.json file: ", dataFile => {
 
-    if (!fs.existsSync(dataFile)) throw Error("Generated data.json not found");
+    if (!fs.existsSync(dataFile)) throw Error("Generated show file not found");
 
     const data = require(dataFile);
 
