@@ -1,6 +1,7 @@
 import re
 import requests
 import time
+import json
 
 CDN_ENDPOINT = "https://cdn.gizmo.moe/ramune"
 JIKAN_ENDPOINT = "https://api.jikan.moe/v3"
@@ -52,6 +53,10 @@ for index, mal_id in enumerate(mal_id_list):
 	show["seasons"].append(season)
 
 	print("Finished Season " + str(index + 1))
+
+file = open("show.json", "x")
+file.write(json.dumps(show))
+file.close()
 
 print("Finished " + show["title"])
 print(show)
