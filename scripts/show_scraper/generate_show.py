@@ -21,7 +21,7 @@ mal_id_list = input("Enter MAL ID(s): ").split(",")
 for index, mal_id in enumerate(mal_id_list):
 
 	season = {
-		"id": index,
+		"id": index + 1,
 		"episodes": []
 	}
 
@@ -43,7 +43,7 @@ for index, mal_id in enumerate(mal_id_list):
 	# Create episodes
 	for index, mal_anime_episode in enumerate(mal_anime_episodes):
 		season["episodes"].append({
-			"id": index,
+			"id": index + 1,
 			"title": mal_anime_episode["title"],
 			"subtitles": [ "en", "ja" ],
 			"duration": 0,
