@@ -11,7 +11,7 @@ import { getShowCDNEndpoint } from "@utils/shows";
 import { Show, Episode, Season, ShowHusk } from "@typings/show";
 import { StoredShow, StoredSeason, StoredEpisode } from "@typings/database";
 
-function constructShowFromDocument(doc: DocumentSnapshot, includeEpisodes: boolean): ShowHusk | Show | null {
+function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: boolean): ShowHusk | Show | null {
 
 	const
 		SHOW_CDN_ENDPOINT = getShowCDNEndpoint(doc.id),
@@ -19,10 +19,11 @@ function constructShowFromDocument(doc: DocumentSnapshot, includeEpisodes: boole
 
 	if (showData) {
 
-		const constructedShow: ShowHusk = {
+		const constructedShow = {
 			id: doc.id,
-			poster_url: `${SHOW_CDN_ENDPOINT}/poster.jpg`,
-			...showData
+			title: showData.title,
+			description: showData.description,
+			poster_url: `${SHOW_CDN_ENDPOINT}/poster.jpg`
 		};
 
 		if (includeEpisodes) {
