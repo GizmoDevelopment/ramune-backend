@@ -11,5 +11,5 @@ export const ENDPOINTS = {
 
 export const LANGUAGES: Record<LanguageCode, LanguageName> = {
 	"en": "English",
-	"jp": "日本語"
+	"ja": "日本語"
 };

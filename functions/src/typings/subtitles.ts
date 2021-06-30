@@ -1,4 +1,4 @@
-export type LanguageCode = "en" | "jp";
+export type LanguageCode = "en" | "ja";
 export type LanguageName = "English" | "日本語";
 
 export interface Subtitles {
