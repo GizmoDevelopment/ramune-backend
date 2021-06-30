@@ -1,5 +1,5 @@
 export type LanguageCode = "en" | "ja";
-export type LanguageName = "English" | "日本語";
+export type LanguageName = "English" | "Japanese";
 
 export interface Subtitles {
 	code: LanguageCode;
