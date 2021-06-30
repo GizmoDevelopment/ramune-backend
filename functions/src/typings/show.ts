@@ -1,3 +1,6 @@
+// Types
+import { Subtitles } from "@typings/subtitles";
+
 export interface ShowHusk {
 	id: string;
 	title: string;
@@ -18,7 +21,7 @@ export interface Episode {
 	id: number;
 	title: string;
 	thumbnail_url: string;
-	subtitles: Record<string, string>;
+	subtitles: Subtitles[];
 	duration: number;
 	data: EpisodeData;
 }
