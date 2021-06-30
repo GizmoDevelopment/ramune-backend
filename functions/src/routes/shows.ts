@@ -4,12 +4,13 @@ import { DocumentSnapshot } from "@google-cloud/firestore";
 
 // Utils
 import { db } from "@config/firebase";
-import { ENDPOINTS } from "@config/constants";
+import { ENDPOINTS, LANGUAGES } from "@config/constants";
 import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
 import { Show, Episode, Season, ShowHusk } from "@typings/show";
 import { StoredShow, StoredSeason, StoredEpisode } from "@typings/database";
+import { LanguageCode, Subtitles } from "@typings/subtitles";
 
 function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: boolean): ShowHusk | Show | null {
 
@@ -36,10 +37,12 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 
 						const EPISODE_CDN_ENDPOINT = `${SHOW_CDN_ENDPOINT}/episodes/${episode.id}`;
 
-						const subtitles: Record<string, string> = {};
-
-						episode.subtitles.forEach((lang: string): string => {
-							return `${EPISODE_CDN_ENDPOINT}/subtitles/${lang}.vtt`;
+						const subtitles = episode.subtitles.map((lang: LanguageCode): Subtitles => {
+							return {
+								code: lang,
+								language: LANGUAGES[lang],
+								url: `${EPISODE_CDN_ENDPOINT}/subtitles/${lang}.vtt`
+							};
 						});
 
 						return {
