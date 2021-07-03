@@ -2,5 +2,5 @@
 import { ENDPOINTS } from "@config/constants";
 
 export function getShowCDNEndpoint (showId: string): string {
-	return `${ ENDPOINTS.CDN }/ramune/${ showId }`;
+	return `${ ENDPOINTS.VIDEO_CDN }/shows/${ showId }`;
 }
