@@ -48,6 +48,7 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 						return {
 							...episode,
 							thumbnail_url: `${EPISODE_CDN_ENDPOINT}/thumbnail.jpg`,
+							stream_url: `${EPISODE_CDN_ENDPOINT}/${episode.id}.mp4`,
 							subtitles
 						};
 					})
