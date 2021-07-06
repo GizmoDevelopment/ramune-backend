@@ -4,7 +4,7 @@ import { DocumentSnapshot } from "@google-cloud/firestore";
 
 // Utils
 import { db } from "@config/firebase";
-import { ENDPOINTS, LANGUAGES } from "@config/constants";
+import { LANGUAGES } from "@config/constants";
 import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
@@ -87,7 +87,7 @@ export async function returnAllShows (_: Request, res: Response): Promise<void> 
 
 export async function returnRequestedShow (req: Request, res: Response): Promise<void> {
 
-	const { showId, episodeId } = req.params;
+	const { showId } = req.params;
 
 	try {
 
@@ -100,11 +100,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 			const show = constructShowFromDocument(showDocument, true);
 
 			if (show) {
-				if (episodeId && req.originalUrl.includes("/stream")) {
-					res.redirect(`${ENDPOINTS.RAMUNE_CDN}/shows/${show.id}/episodes/${episodeId}.mp4`);
-				} else {
-					res.status(200).json({ type: "success", data: show });
-				}
+				res.status(200).json({ type: "success", data: show });
 			} else {
 				res.status(404).json({ type: "error", message: "Show not found" });
 			}
