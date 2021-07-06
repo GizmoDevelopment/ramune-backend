@@ -101,7 +101,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 
 			if (show) {
 				if (episodeId && req.originalUrl.includes("/stream")) {
-					res.redirect(`${ ENDPOINTS.VIDEO_CDN }/shows/${ show.id }/episodes/${ episodeId }.mp4`);
+					res.redirect(`${ENDPOINTS.RAMUNE_CDN}/shows/${show.id}/episodes/${episodeId}.mp4`);
 				} else {
 					res.status(200).json({ type: "success", data: show });
 				}

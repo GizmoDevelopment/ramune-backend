@@ -5,8 +5,7 @@ import * as functions from "firebase-functions";
 import { LanguageCode, LanguageName } from "@typings/subtitles";
 
 export const ENDPOINTS = {
-	CDN: functions.config().cdn.endpoint,
-	VIDEO_CDN: functions.config().video_cdn.endpoint
+	RAMUNE_CDN: functions.config().cdn.ramune,
 };
 
 export const LANGUAGES: Record<LanguageCode, LanguageName> = {
