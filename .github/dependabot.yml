@@ -4,3 +4,4 @@ updates:
     directory: "functions/"
     schedule:
       interval: "daily"
+      time: "10:00"
