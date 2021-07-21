@@ -41,6 +41,5 @@ export interface EpisodeEffect {
 
 export interface Lyrics {
 	start: number;
-	end: number;
 	url: string;
 }

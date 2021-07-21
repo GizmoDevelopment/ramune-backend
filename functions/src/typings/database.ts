@@ -28,6 +28,5 @@ export interface StoredEpisodeData {
 
 export interface StoredLyrics {
 	start: number;
-	end: number;
 	identifier: string;
 }
