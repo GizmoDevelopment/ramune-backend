@@ -1,5 +1,5 @@
 // Types
-import { EpisodeData } from "@typings/show";
+import { EpisodeEffect } from "@typings/show";
 import { LanguageCode } from "@typings/subtitles";
 
 export interface StoredShow {
@@ -18,5 +18,16 @@ export interface StoredEpisode {
 	title: string;
 	subtitles: LanguageCode[];
 	duration: number;
-	data: EpisodeData;
+	data: StoredEpisodeData;
+}
+
+export interface StoredEpisodeData {
+	effects: EpisodeEffect[];
+	lyrics: StoredLyrics[];
+}
+
+export interface StoredLyrics {
+	start: number;
+	end: number;
+	identifier: string;
 }

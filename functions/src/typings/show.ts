@@ -29,6 +29,7 @@ export interface Episode {
 
 export interface EpisodeData {
 	effects: EpisodeEffect[];
+	lyrics: Lyrics[];
 }
 
 export interface EpisodeEffect {
@@ -36,4 +37,10 @@ export interface EpisodeEffect {
 	data: any;
 	start: number;
 	end: number;
+}
+
+export interface Lyrics {
+	start: number;
+	end: number;
+	url: string;
 }
