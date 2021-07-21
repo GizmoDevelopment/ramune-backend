@@ -62,8 +62,9 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 
 							const lyrics: Lyrics[] = episode.data.lyrics.map((_lyrics: StoredLyrics): Lyrics => {
 								return {
+									id: _lyrics.id,
 									start: _lyrics.start,
-									url: `${SHOW_CDN_ENDPOINT}/lyrics/${_lyrics.identifier}.lrc`
+									url: `${SHOW_CDN_ENDPOINT}/lyrics/${_lyrics.id}.lrc`
 								};
 							});
 

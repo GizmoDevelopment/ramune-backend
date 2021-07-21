@@ -40,6 +40,7 @@ export interface EpisodeEffect {
 }
 
 export interface Lyrics {
+	id: string;
 	start: number;
 	url: string;
 }
