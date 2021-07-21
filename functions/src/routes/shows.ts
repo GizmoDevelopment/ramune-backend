@@ -8,8 +8,8 @@ import { LANGUAGES } from "@config/constants";
 import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
-import { Show, Episode, Season, ShowHusk } from "@typings/show";
-import { StoredShow, StoredSeason, StoredEpisode } from "@typings/database";
+import { Show, Episode, Season, ShowHusk, Lyrics } from "@typings/show";
+import { StoredShow, StoredSeason, StoredEpisode, StoredLyrics } from "@typings/database";
 import { LanguageCode, Subtitles } from "@typings/subtitles";
 
 function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: boolean): ShowHusk | Show | null {
@@ -35,22 +35,43 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 					...season,
 					episodes: season.episodes.map((episode: StoredEpisode): Episode => {
 
-						const EPISODE_CDN_ENDPOINT = `${SHOW_CDN_ENDPOINT}/episodes/${episode.id}`;
-
-						const subtitles = episode.subtitles.map((lang: LanguageCode): Subtitles => {
-							return {
-								code: lang,
-								language: LANGUAGES[lang],
-								url: `${EPISODE_CDN_ENDPOINT}/subtitles/${lang}.vtt`
+						const
+							EPISODE_CDN_ENDPOINT = `${SHOW_CDN_ENDPOINT}/episodes/${episode.id}`,
+							constructedEpisode: Episode = {
+								...episode,
+								thumbnail_url: `${EPISODE_CDN_ENDPOINT}/thumbnail.jpg`,
+								stream_url: `${EPISODE_CDN_ENDPOINT}/${episode.id}.mp4`,
+								subtitles: [],
+								data: {}
 							};
-						});
 
-						return {
-							...episode,
-							thumbnail_url: `${EPISODE_CDN_ENDPOINT}/thumbnail.jpg`,
-							stream_url: `${EPISODE_CDN_ENDPOINT}/${episode.id}.mp4`,
-							subtitles
-						};
+						if (episode.subtitles.length > 0) {
+
+							const subtitles: Subtitles[] = episode.subtitles.map((lang: LanguageCode): Subtitles => {
+								return {
+									code: lang,
+									language: LANGUAGES[lang],
+									url: `${EPISODE_CDN_ENDPOINT}/subtitles/${lang}.vtt`
+								};
+							});
+
+							constructedEpisode.subtitles = subtitles;
+						}
+
+						if (episode.data.lyrics) {
+
+							const lyrics: Lyrics[] = episode.data.lyrics.map((_lyrics: StoredLyrics): Lyrics => {
+								return {
+									start: _lyrics.start,
+									end: _lyrics.end,
+									url: `${SHOW_CDN_ENDPOINT}/lyrics/${_lyrics.identifier}.lrc`
+								};
+							});
+
+							constructedEpisode.data.lyrics = lyrics;
+						}
+
+						return constructedEpisode;
 					})
 				};
 			});
