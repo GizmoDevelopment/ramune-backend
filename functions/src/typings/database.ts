@@ -22,8 +22,8 @@ export interface StoredEpisode {
 }
 
 export interface StoredEpisodeData {
-	effects: EpisodeEffect[];
-	lyrics: StoredLyrics[];
+	effects?: EpisodeEffect[];
+	lyrics?: StoredLyrics[];
 }
 
 export interface StoredLyrics {

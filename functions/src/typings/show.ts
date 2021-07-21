@@ -28,8 +28,8 @@ export interface Episode {
 }
 
 export interface EpisodeData {
-	effects: EpisodeEffect[];
-	lyrics: Lyrics[];
+	effects?: EpisodeEffect[];
+	lyrics?: Lyrics[];
 }
 
 export interface EpisodeEffect {
