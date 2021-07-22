@@ -6,6 +6,7 @@ export interface ShowHusk {
 	title: string;
 	description: string;
 	poster_url: string;
+	banner_url: string;
 }
 
 export interface Show extends ShowHusk {

@@ -20,11 +20,12 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 
 	if (showData) {
 
-		const constructedShow = {
+		const constructedShow: ShowHusk = {
 			id: doc.id,
 			title: showData.title,
 			description: showData.description,
-			poster_url: `${SHOW_CDN_ENDPOINT}/poster.jpg`
+			poster_url: `${SHOW_CDN_ENDPOINT}/poster.jpg`,
+			banner_url: `${SHOW_CDN_ENDPOINT}/banner.jpg`,
 		};
 
 		if (includeEpisodes) {
