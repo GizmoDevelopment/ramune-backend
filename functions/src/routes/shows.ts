@@ -72,6 +72,10 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 							constructedEpisode.data.lyrics = lyrics;
 						}
 
+						if (episode.data.effects) {
+							constructedEpisode.data.effects = episode.data.effects;
+						}
+
 						return constructedEpisode;
 					})
 				};
