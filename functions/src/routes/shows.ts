@@ -122,7 +122,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 			showDocument = await showQuery.get();
 
 		if (showDocument.exists) {
-			if (req.path.match(/\/raw/i)) {
+			if (req.originalUrl.match(/\/raw$/i)) {
 
 				const showData = showDocument.data() as StoredShow | undefined;
 
