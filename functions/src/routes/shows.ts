@@ -122,15 +122,26 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 			showDocument = await showQuery.get();
 
 		if (showDocument.exists) {
+			if (req.path.match(/\/raw/i)) {
 
-			const show = constructShowFromDocument(showDocument, true);
+				const showData = showDocument.data() as StoredShow | undefined;
 
-			if (show) {
-				res.status(200).json({ type: "success", data: show });
+				if (showData) {
+					res.status(200).json({ type: "success", data: showData });
+				} else {
+					res.status(400).json({ type: "error", message: "Something went wrong" });
+				}
+
 			} else {
-				res.status(404).json({ type: "error", message: "Show not found" });
-			}
 
+				const show = constructShowFromDocument(showDocument, true);
+
+				if (show) {
+					res.status(200).json({ type: "success", data: show });
+				} else {
+					res.status(404).json({ type: "error", message: "Show not found" });
+				}
+			}
 		} else {
 			res.status(404).json({ type: "error", message: "Show not found" });
 		}
