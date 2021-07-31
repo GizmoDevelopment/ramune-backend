@@ -19,6 +19,6 @@ app.get("/dango", (_, res: express.Response) => {
 
 app.get("/shows", returnAllShows);
 app.get("/shows/:showId", returnRequestedShow);
-app.get("/shows/:showId/episodes/:episodeId/stream", returnRequestedShow);
+app.get("/shows/:showId/raw", returnRequestedShow);
 
 exports.ramune = functions.region("europe-west1").https.onRequest(app);
