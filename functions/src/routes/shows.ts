@@ -37,7 +37,7 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 					episodes: season.episodes.map((episode: StoredEpisode): Episode => {
 
 						const
-							EPISODE_CDN_ENDPOINT = `${SHOW_CDN_ENDPOINT}/episodes/${episode.id}`,
+							EPISODE_CDN_ENDPOINT = `${SHOW_CDN_ENDPOINT}/seasons/${season.id}/episodes/${episode.id}`,
 							constructedEpisode: Episode = {
 								...episode,
 								thumbnail_url: `${EPISODE_CDN_ENDPOINT}/thumbnail.jpg`,
