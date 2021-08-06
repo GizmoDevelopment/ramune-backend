@@ -35,7 +35,7 @@ export interface EpisodeData {
 
 export interface EpisodeEffect {
 	renderer: "tsparticles" | "leaf";
-	data: any;
+	data: unknown;
 	start: number;
 	end: number;
 }
