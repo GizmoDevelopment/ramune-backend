@@ -2,7 +2,7 @@
 	"name": "functions",
 	"version": "1.0.3",
 	"scripts": {
-		"lint": "eslint --ext .js,.ts .",
+		"lint": "eslint src",
 		"build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./lib",
 		"serve": "npm run build && firebase emulators:start --only functions",
 		"shell": "npm run build && firebase functions:shell",
