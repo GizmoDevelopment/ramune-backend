@@ -24,7 +24,7 @@ rl.question("Enter path to *.json file: ", dataFile => {
 
     if (!data.id) throw Error("Show has no ID");
 
-	const content = data;
+	const content = { ...data };
 
 	delete content.id;
 
