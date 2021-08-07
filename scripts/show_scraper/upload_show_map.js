@@ -24,11 +24,15 @@ rl.question("Enter path to *.json file: ", dataFile => {
 
     if (!data.id) throw Error("Show has no ID");
 
+	const content = data;
+
+	delete content.id;
+
     admin
         .firestore()
         .collection("shows")
         .doc(data.id)
-        .set(data).then(res => {
+        .set(content).then(res => {
             console.log(res);
             process.exit(0);
         }).catch(err => {
