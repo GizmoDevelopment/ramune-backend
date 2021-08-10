@@ -5,48 +5,58 @@ mkdir subtitles
 
 let INDEX=1
 let SUBTITLE_TRACK=0 # ID of subtitle track to use
-let AUDIO_TRACK=0 # ID of audio track to use
+let AUDIO_TRACK=1 # ID of audio track to use
 
 for FILE in ./*.mkv; do
 
-    # Dump WebVTT subtitles
-    ffmpeg \
-        -hwaccel cuda -y \
-        -i "$FILE" \
-        -preset ultrafast \
-        -map 0:s:$SUBTITLE_TRACK \
-        -f webvtt \
-        "./subtitles/$INDEX.vtt"
+	# Dump WebVTT subtitles
+	ffmpeg \
+		-hwaccel cuda -y \
+		-i "$FILE" \
+		-preset ultrafast \
+		-map 0:s:$SUBTITLE_TRACK \
+		-f webvtt \
+		"./subtitles/$INDEX.vtt"
 
-    # Dump ASS subtitles
-    ffmpeg \
-        -hwaccel cuda -y \
-        -i "$FILE" \
-        -preset ultrafast \
-        -map 0:s:$SUBTITLE_TRACK \
-        "./subtitles/$INDEX.ass"
+	# Dump ASS subtitles
+	ffmpeg \
+		-hwaccel cuda -y \
+		-i "$FILE" \
+		-preset ultrafast \
+		-map 0:s:$SUBTITLE_TRACK \
+		"./subtitles/$INDEX.ass"
 
-    # Re-encode
-    ffmpeg \
-        -hwaccel cuda -y \
-        -i "$FILE" \
-        -preset ultrafast -pix_fmt yuv420p \
-        -map 0:0 -map 0:a:$AUDIO_TRACK \
-        -c:v libx264 -c:a copy \
-        "encoded_$INDEX.mp4"
+	# Re-encode
+	#ffmpeg \
+	#	-hwaccel cuda -y \
+	#	-i "$FILE" \
+	#	-preset ultrafast
+	#	-pix_fmt yuv420p \
+	#	-map 0:0 -map 0:a:$AUDIO_TRACK \
+	#	-c:v libx264 -c:a copy \
+	#	"encoded_$INDEX.mp4"
 
     # Take the re-encoded video and hardcode the subtitles
-    ffmpeg \
-        -hwaccel cuda -y \
-        -i "encoded_$INDEX.mp4" \
-        -preset ultrafast \
-        -vf subtitles="'$FILE':stream_index=$SUBTITLE_TRACK" \
-        "./episodes/$INDEX.mp4"
+	#ffmpeg \
+	#	-hwaccel cuda -y \
+	#	-i "encoded_$INDEX.mp4" \
+	#	-preset ultrafast \
+	#	-vf subtitles="'$FILE':stream_index=$SUBTITLE_TRACK" \
+	#	"./episodes/$INDEX.mp4"
 
     # Remove leftovers
-    rm "encoded_$INDEX.mp4"
-    
-    let INDEX++
+	#rm "encoded_$INDEX.mp4"
+
+	ffmpeg \
+		-hwaccel cuda -y \
+		-i "$FILE" \
+		-preset slower
+		-pix_fmt yuv420p \
+		-map 0:0 -map 0:a:$AUDIO_TRACK \
+		-c:v h264 -c:a aac \
+		"./episodes/$INDEX.mp4"
+
+	let INDEX++
 done
 
 #ffmpeg -i "$FILE" -map 0:0 -map 0:1 -map 0:2 -c copy "./episodes/$INDEX.mp4"
@@ -82,3 +92,5 @@ done
 #ffmpeg -hwaccel cuda -i "1.mkv" -preset ultrafast -vf subtitles="1.mkv" -pix_fmt yuv420p -map 0:0 -map 0:a:1 -map 0:s:1 -c:v libx264 -c:a copy "./episodes/XD.mp4"
 
 # Map only the needed subtitles and then hardcode them (god why do I have to do it like this)
+
+# let PATH="d:/Anime/Higurashi no Naku Koro ni/Higurashi/Higurashi no Naku Koro ni"; for FILE in "d:/Anime/Higurashi no Naku Koro ni/Higurashi/Higurashi no Naku Koro ni/*.mkv"; do ffmpeg -hwaccel cuvid -i "d:/Anime/Higurashi no Naku Koro ni/Higurashi/Higurashi no Naku Koro ni/$FILE" "$FILE.vtt"; done
