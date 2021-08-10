@@ -16,9 +16,11 @@
 			"@routes/*": ["routes/*"],
 			"@config/*": ["config/*"],
 			"@utils/*": ["utils/*"]
-		}
+		},
+		"plugins": [
+			{ "transform": "typescript-transform-paths" },
+		]
 	},
-	"compileOnSave": true,
 	"include": [
 		"src"
 	]
