@@ -4,7 +4,7 @@
 	"scripts": {
 		"prepare": "ts-patch install -s",
 		"lint": "eslint src",
-		"build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./lib",
+		"build": "tsc",
 		"serve": "npm run build && firebase emulators:start --only functions",
 		"shell": "npm run build && firebase functions:shell",
 		"start": "npm run shell",
