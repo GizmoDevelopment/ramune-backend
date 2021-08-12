@@ -9,23 +9,38 @@ const rl = readline.createInterface({
 	output: process.stdout
 });
 
-async function extractDuration (file) {
+async function extractData (file) {
 
 	const res = JSON.parse((await ffprobe([
 		"-v", "error",
 		"-print_format", "json",
 		"-show_format",
+		"-show_chapters",
 		"-show_streams",
 		"-i", file
 	])).toString());
 
-	const number = Number(res.streams?.[0]?.duration);
+	const data = {
+		duration: 0
+	};
 
-	if (isNaN(number)) {
-		return 0;
-	} else {
-		return Number(number.toFixed(1));
+	const duration = Number(res.streams?.[0]?.duration);
+
+	if (!isNaN(duration)) {
+		data.duration = Number(duration.toFixed(1));
 	}
+
+	if (res.chapters) {
+		res.chapters.forEach(chapter => {
+			if (chapter.tags.title === "OP") {
+				data.OP = chapter.start / 1000;
+			} else if (chapter.tags.title === "ED") {
+				data.ED = chapter.start / 1000;
+			}
+		});
+	}
+
+	return data;
 }
 
 //const matched = stdout.match(/duration="?(\d*\.\d*)"?/)
@@ -33,12 +48,12 @@ async function extractDuration (file) {
 
 function ffprobe (args, options = {}) {
 	return new Promise((res, rej) => {
-		
+
 		const output = [];
-		
+
 		// Spawn FFprobe
 		const ffprobeProcess = spawn("ffprobe", args, { shell: true });
-		
+
 		ffprobeProcess.on("close", code => {
 			if (code > 0) {
 				rej(new Error("Couldn't start FFprobe process"));
@@ -47,22 +62,22 @@ function ffprobe (args, options = {}) {
 
 		ffprobeProcess.stdin.on("error", rej);
 		ffprobeProcess.stdout.on("error", rej);
-		
+
 		ffprobeProcess.stdout.on("data", data => {
-			
+
 			output.push(data);
-			
+
 			if (typeof options?.output === "function") {
 				const resp = options.output(data);
 				if (resp === false) ffprobeProcess.kill("SIGTERM");
 			}
-			
+
 		});
-		
+
 		ffprobeProcess.stdout.on("end", () => {
 			res(Buffer.concat(output));
 		});
-		
+
 	});
 }
 
@@ -76,26 +91,65 @@ process.on("unhandledRejection", err => {
 	process.exit(1);
 });
 
-rl.question("Path to episode directory: ", async episodeDirectory => {
+rl.question("Path to show.json: ", showDataPath => {
 
-	const
-		episodeList = fs.readdirSync(episodeDirectory),
-		episodes = {},
-		episodePromises = [];
+	const showData = require(showDataPath);
 
-	episodeList.forEach(episodeFile => {
+	rl.question("Path to episode directory: ", async episodeDirectory => {
 
-		const p = extractDuration(path.join(episodeDirectory, episodeFile, `${episodeFile}.mp4`));
+		const
+			episodeList = fs.readdirSync(episodeDirectory),
+			_episodeData = {},
+			episodePromises = [];
 
-		p.then(duration => {
-			episodes[parseInt(episodeFile)] = duration;
+		episodeList.forEach(episodeFile => {
+
+			const p = extractData(path.join(episodeDirectory, episodeFile, `${episodeFile}.mp4`));
+
+			p.then(duration => {
+				_episodeData[parseInt(episodeFile)] = duration;
+			});
+
+			episodePromises.push(p);
 		});
 
-		episodePromises.push(p);
-	});
-	
-	await Promise.all(episodePromises);
+		await Promise.all(episodePromises);
 
-	console.log(episodes);
-	process.exit(0);
+		for (const _episodeIndex in _episodeData) {
+			showData.seasons.forEach((season, seasonIndex) => {
+				season.episodes.forEach((episode, episodeIndex) => {
+					if (episode.id === parseInt(_episodeIndex)) {
+
+						const _ep = _episodeData[_episodeIndex];
+
+						if (episode.duration > 0) {
+							episode.duration = _ep.duration;
+						}
+
+						episode.data.lyrics = [];
+
+						if ("OP" in _ep) {
+							episode.data.lyrics.push({
+								id: "op1",
+								start: _ep.OP
+							});
+						}
+
+						if ("ED" in _ep) {
+							episode.data.lyrics.push({
+								id: "ed1",
+								start: _ep.ED
+							});
+						}
+
+						showData.seasons[seasonIndex].episodes[episodeIndex] = episode;
+					}
+				});
+			});
+		}
+
+		console.log(_episodeData);
+		fs.writeFileSync(showDataPath, JSON.stringify(showData));
+		process.exit(0);
+	});
 });
