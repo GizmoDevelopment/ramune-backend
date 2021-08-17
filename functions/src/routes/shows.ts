@@ -127,7 +127,7 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 				const showData = showDocument.data() as StoredShow | undefined;
 
 				if (showData) {
-					res.status(200).json({ type: "success", data: showData });
+					res.status(200).json({ type: "success", data: { ...showData, id: showDocument.id } });
 				} else {
 					res.status(400).json({ type: "error", message: "Something went wrong" });
 				}
