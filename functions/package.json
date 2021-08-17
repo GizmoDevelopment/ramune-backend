@@ -32,7 +32,7 @@
 		"firebase-functions-test": "^0.3.1",
 		"ts-patch": "^1.4.2",
 		"typescript": "^4.3.5",
-		"typescript-transform-paths": "^3.3.0"
+		"typescript-transform-paths": "^3.3.1"
 	},
 	"private": true
 }
