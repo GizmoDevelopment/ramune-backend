@@ -122,11 +122,13 @@ rl.question("Path to show.json: ", showDataPath => {
 
 						const _ep = _episodeData[_episodeIndex];
 
-						if (episode.duration > 0) {
+						if (_ep.duration > 0) {
 							episode.duration = _ep.duration;
 						}
 
-						episode.data.lyrics = [];
+						if ("OP" in _ep || "ED" in _ep) {
+							episode.data.lyrics = [];
+						}
 
 						if ("OP" in _ep) {
 							episode.data.lyrics.push({
