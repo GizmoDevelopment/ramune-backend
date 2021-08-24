@@ -52,7 +52,7 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 								return {
 									code: lang,
 									language: LANGUAGES[lang],
-									url: `${EPISODE_CDN_ENDPOINT}/subtitles/${lang}.vtt`
+									url: `${EPISODE_CDN_ENDPOINT}/subtitles/${lang}.ass`
 								};
 							});
 
