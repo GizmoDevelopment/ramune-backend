@@ -23,11 +23,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-    - name: Install dependencies
+      - name: Install function dependencies
+        run: cd functions
+        
+      - name: Install dependencies
         run: npm ci
 
-    - name: Install firebase dependencies
+      - name: Install firebase dependencies
         run: npm i -D firebase-tools
 
-    - name: Deploy
+      - name: Deploy
         run: firebase deploy --token ${{ secrets.FIREBASE_CI_TOKEN }}

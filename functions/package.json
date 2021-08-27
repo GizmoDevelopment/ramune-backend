@@ -16,7 +16,7 @@
 	},
 	"main": "lib/index.js",
 	"dependencies": {
-		"@google-cloud/firestore": "^4.14.2",
+		"@google-cloud/firestore": "^4.15.0",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
 		"firebase-admin": "^9.11.1",
@@ -25,7 +25,7 @@
 	"devDependencies": {
 		"@gizmo-dev/eslint-config": "^1.0.22",
 		"@types/cors": "^2.8.12",
-		"@types/node": "^14.17.11",
+		"@types/node": "^14.17.12",
 		"@typescript-eslint/eslint-plugin": "^4.29.3",
 		"@typescript-eslint/parser": "^4.29.3",
 		"eslint": "^7.32.0",
