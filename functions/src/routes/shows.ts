@@ -105,8 +105,14 @@ export async function returnAllShows (_: Request, res: Response): Promise<void> 
 
 		res.status(200).json({ type: "success", data: filteredShows });
 
-	} catch (err) {
-		console.error(new Error(err));
+	} catch (err: unknown) {
+
+		if (typeof err === "string") {
+			console.error(Error(err));
+		} else {
+			console.error(err);
+		}
+
 		res.status(500).json({ type: "error", message: "Something went wrong" });
 	}
 }
@@ -146,8 +152,14 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 			res.status(404).json({ type: "error", message: "Show not found" });
 		}
 
-	} catch (err) {
-		console.error(new Error(err));
+	} catch (err: unknown) {
+
+		if (typeof err === "string") {
+			console.error(Error(err));
+		} else {
+			console.error(err);
+		}
+
 		res.status(500).json({ type: "error", message: "Something went wrong" });
 	}
 
