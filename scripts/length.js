@@ -96,62 +96,71 @@ rl.question("Path to show.json: ", showDataPath => {
 	const showData = require(showDataPath);
 
 	rl.question("Path to episode directory: ", async episodeDirectory => {
+		rl.question("Do you want OP/ED timestamps? (Y\\n) ", async timestampChoice => {
 
-		const
-			episodeList = fs.readdirSync(episodeDirectory),
-			_episodeData = {},
-			episodePromises = [];
+			const
+				shouldSaveTimestamps = timestampChoice.toLowerCase() === "y" || timestampChoice.trim().length === 0;
 
-		episodeList.forEach(episodeFile => {
+			const
+				episodeList = fs.readdirSync(episodeDirectory),
+				_episodeData = {},
+				episodePromises = [];
 
-			const p = extractData(path.join(episodeDirectory, episodeFile, `${episodeFile}.mp4`));
+			episodeList.forEach(episodeFile => {
 
-			p.then(duration => {
-				_episodeData[parseInt(episodeFile)] = duration;
-			});
+				const p = extractData(path.join(episodeDirectory, episodeFile, `${episodeFile}.mp4`));
 
-			episodePromises.push(p);
-		});
-
-		await Promise.all(episodePromises);
-
-		for (const _episodeIndex in _episodeData) {
-			showData.seasons.forEach((season, seasonIndex) => {
-				season.episodes.forEach((episode, episodeIndex) => {
-					if (episode.id === parseInt(_episodeIndex)) {
-
-						const _ep = _episodeData[_episodeIndex];
-
-						if (_ep.duration > 0) {
-							episode.duration = _ep.duration;
-						}
-
-						if ("OP" in _ep || "ED" in _ep) {
-							episode.data.lyrics = [];
-						}
-
-						if ("OP" in _ep) {
-							episode.data.lyrics.push({
-								id: "op1",
-								start: _ep.OP
-							});
-						}
-
-						if ("ED" in _ep) {
-							episode.data.lyrics.push({
-								id: "ed1",
-								start: _ep.ED
-							});
-						}
-
-						showData.seasons[seasonIndex].episodes[episodeIndex] = episode;
-					}
+				p.then(duration => {
+					_episodeData[parseInt(episodeFile)] = duration;
 				});
-			});
-		}
 
-		console.log(_episodeData);
-		fs.writeFileSync(showDataPath, JSON.stringify(showData));
-		process.exit(0);
+				episodePromises.push(p);
+			});
+
+			await Promise.all(episodePromises);
+
+			for (const _episodeIndex in _episodeData) {
+				showData.seasons.forEach((season, seasonIndex) => {
+					season.episodes.forEach((episode, episodeIndex) => {
+						if (episode.id === parseInt(_episodeIndex)) {
+
+							const _ep = _episodeData[_episodeIndex];
+
+							if (_ep.duration > 0) {
+								episode.duration = _ep.duration;
+							}
+
+							if (shouldSaveTimestamps) {
+
+								if ("OP" in _ep || "ED" in _ep) {
+									episode.data.lyrics = [];
+								}
+
+								if ("OP" in _ep) {
+									episode.data.lyrics.push({
+										id: "op1",
+										start: _ep.OP
+									});
+								}
+
+								if ("ED" in _ep) {
+									episode.data.lyrics.push({
+										id: "ed1",
+										start: _ep.ED
+									});
+								}
+
+							}
+
+							showData.seasons[seasonIndex].episodes[episodeIndex] = episode;
+						}
+					});
+				});
+			}
+
+			console.log(_episodeData);
+			fs.writeFileSync(showDataPath, JSON.stringify(showData));
+			process.exit(0);
+		});
 	});
 });
