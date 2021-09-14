@@ -1,6 +1,6 @@
 {
 	"name": "functions",
-	"version": "1.0.31",
+	"version": "1.0.32",
 	"scripts": {
 		"prepare": "npx ts-patch install -s",
 		"lint": "eslint src",
