@@ -1,16 +1,16 @@
 // Modules
 import { Request, Response } from "express";
 import { DocumentSnapshot } from "@google-cloud/firestore";
+import ISO6391 from "iso-639-1";
 
 // Utils
 import { db } from "@config/firebase";
-import { LANGUAGES } from "@config/constants";
 import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
 import { Show, Episode, Season, ShowHusk, Lyrics } from "@typings/show";
 import { StoredShow, StoredSeason, StoredEpisode, StoredLyrics } from "@typings/database";
-import { LanguageCode, Subtitles } from "@typings/subtitles";
+import { Subtitles } from "@typings/subtitles";
 
 function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: boolean): ShowHusk | Show | null {
 
@@ -48,10 +48,10 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 
 						if (episode.subtitles.length > 0) {
 
-							const subtitles: Subtitles[] = episode.subtitles.map((lang: LanguageCode): Subtitles => {
+							const subtitles: Subtitles[] = episode.subtitles.map((lang: string): Subtitles => {
 								return {
 									code: lang,
-									language: LANGUAGES[lang],
+									language: ISO6391.getName(lang),
 									url: `${EPISODE_CDN_ENDPOINT}/subtitles/${lang}.ass`
 								};
 							});
