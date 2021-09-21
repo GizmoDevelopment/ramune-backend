@@ -28,7 +28,7 @@
 		"@types/cors": "^2.8.12",
 		"@types/node": "^14.17.17",
 		"@typescript-eslint/eslint-plugin": "^4.31.2",
-		"@typescript-eslint/parser": "^4.31.1",
+		"@typescript-eslint/parser": "^4.31.2",
 		"eslint": "^7.32.0",
 		"firebase-functions-test": "^0.3.2",
 		"ts-patch": "^1.4.4",
