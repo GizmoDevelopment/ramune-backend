@@ -20,7 +20,7 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 
 	if (showData) {
 
-		const constructedShow: ShowHusk = {
+		const constructedShowHusk: ShowHusk = {
 			id: doc.id,
 			title: showData.title,
 			description: showData.description,
@@ -30,8 +30,14 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 
 		if (includeEpisodes) {
 
+			const constructedShow: Show = {
+				...constructedShowHusk,
+				format: showData.format,
+				seasons: []
+			};
+
 			// Convert types and inject missing properties
-			(constructedShow as Show).seasons = showData.seasons.map((season: StoredSeason): Season => {
+			constructedShow.seasons = showData.seasons.map((season: StoredSeason): Season => {
 				return {
 					...season,
 					episodes: season.episodes.map((episode: StoredEpisode): Episode => {
@@ -81,9 +87,9 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 				};
 			});
 
-			return constructedShow as Show;
+			return constructedShow;
 		} else {
-			return constructedShow as ShowHusk;
+			return constructedShowHusk;
 		}
 
 	} else {
