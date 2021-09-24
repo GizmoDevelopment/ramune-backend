@@ -24,9 +24,11 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install /functions dependencies
-        run: cd functions && npm ci
+        working-directory: ./functions
+        run: npm ci
 
       - name: Install firebase dependencies
+        working-directory: ./functions
         run: npm i -D firebase-tools
 
       - name: Deploy
