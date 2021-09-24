@@ -1,9 +1,10 @@
 // Types
-import { EpisodeEffect } from "@typings/show";
+import { EpisodeEffect, ShowFormat } from "@typings/show";
 
 export interface StoredShow {
 	title: string;
 	description: string;
+	format?: ShowFormat;
 	seasons: StoredSeason[];
 }
 
