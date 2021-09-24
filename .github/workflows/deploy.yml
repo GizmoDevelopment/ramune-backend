@@ -23,13 +23,12 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Install firebase
+        run: curl -sL https://firebase.tools | bash
+
       - name: Install /functions dependencies
         working-directory: ./functions
         run: npm ci
 
-      - name: Install firebase dependencies
-        working-directory: ./functions
-        run: npm i -D firebase-tools
-
       - name: Deploy
-        run: npx firebase deploy --token ${{ secrets.FIREBASE_CI_TOKEN }}
+        run: firebase deploy --token ${{ secrets.FIREBASE_CI_TOKEN }}
