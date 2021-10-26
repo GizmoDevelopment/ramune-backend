@@ -1,3 +1,6 @@
 {
-	"extends": "@gizmo-dev/eslint-config"
+	"extends": "@gizmo-dev/eslint-config",
+	"parserOptions": {
+		"project": [ "./tsconfig.json" ]
+	}
 }
