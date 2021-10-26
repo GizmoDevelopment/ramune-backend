@@ -1,5 +1,5 @@
 // Types
-import { EpisodeEffect, ShowFormat } from "@typings/show";
+import type { EpisodeEffect, ShowFormat } from "@typings/show";
 
 export interface StoredShow {
 	title: string;

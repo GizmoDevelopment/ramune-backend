@@ -1,16 +1,16 @@
 // Modules
-import { Request, Response } from "express";
-import { DocumentSnapshot } from "@google-cloud/firestore";
 import ISO6391 from "iso-639-1";
+import type { Request, Response } from "express";
+import type { DocumentSnapshot } from "@google-cloud/firestore";
 
 // Utils
 import { db } from "@config/firebase";
 import { getShowCDNEndpoint } from "@utils/shows";
 
 // Types
-import { Show, Episode, Season, ShowHusk, Lyrics } from "@typings/show";
-import { StoredShow, StoredSeason, StoredEpisode, StoredLyrics } from "@typings/database";
-import { Subtitles } from "@typings/subtitles";
+import type { Show, Episode, Season, ShowHusk, Lyrics } from "@typings/show";
+import type { StoredShow, StoredSeason, StoredEpisode, StoredLyrics } from "@typings/database";
+import type { Subtitles } from "@typings/subtitles";
 
 function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: boolean): ShowHusk | Show | null {
 

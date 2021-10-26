@@ -1,5 +1,5 @@
 // Types
-import { Subtitles } from "@typings/subtitles";
+import type { Subtitles } from "@typings/subtitles";
 
 export interface ShowHusk {
 	id: string;
