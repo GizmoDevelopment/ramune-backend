@@ -18,7 +18,7 @@
 	"dependencies": {
 		"@google-cloud/firestore": "^4.15.1",
 		"cors": "^2.8.5",
-		"express": "^4.17.1",
+		"express": "^4.17.2",
 		"firebase-admin": "^10.0.1",
 		"firebase-functions": "^3.16.0",
 		"iso-639-1": "^2.1.11"
