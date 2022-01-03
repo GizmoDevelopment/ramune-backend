@@ -16,7 +16,7 @@
 	},
 	"main": "lib/index.js",
 	"dependencies": {
-		"@google-cloud/firestore": "^4.15.1",
+		"@google-cloud/firestore": "^5.0.1",
 		"cors": "^2.8.5",
 		"express": "^4.17.2",
 		"firebase-admin": "^10.0.1",
