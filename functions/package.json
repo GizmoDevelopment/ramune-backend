@@ -14,6 +14,9 @@
 	"engines": {
 		"node": "14"
 	},
+	"os": [
+		"!win32"
+	],
 	"main": "lib/index.js",
 	"dependencies": {
 		"@google-cloud/firestore": "^4.15.1",
