@@ -21,21 +21,21 @@
 	"dependencies": {
 		"@google-cloud/firestore": "^4.15.1",
 		"cors": "^2.8.5",
-		"express": "^4.17.2",
+		"express": "^4.17.3",
 		"firebase-admin": "^10.0.2",
-		"firebase-functions": "^3.18.0",
+		"firebase-functions": "^3.18.1",
 		"iso-639-1": "^2.1.13"
 	},
 	"devDependencies": {
-		"@gizmo-dev/eslint-config": "^1.0.28",
+		"@gizmo-dev/eslint-config": "^1.0.29",
 		"@types/cors": "^2.8.12",
-		"@types/node": "^14.18.0",
-		"@typescript-eslint/eslint-plugin": "^5.11.0",
-		"@typescript-eslint/parser": "^5.11.0",
-		"eslint": "^8.8.0",
+		"@types/node": "^14.18.12",
+		"@typescript-eslint/eslint-plugin": "^5.13.0",
+		"@typescript-eslint/parser": "^5.13.0",
+		"eslint": "^8.10.0",
 		"firebase-functions-test": "^0.3.3",
 		"ts-patch": "^2.0.1",
-		"typescript": "^4.5.5",
+		"typescript": "^4.6.2",
 		"typescript-transform-paths": "^3.3.1"
 	},
 	"private": true
