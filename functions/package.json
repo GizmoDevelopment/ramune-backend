@@ -1,6 +1,6 @@
 {
 	"name": "functions",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"scripts": {
 		"prepare": "ts-patch install -s",
 		"lint": "eslint src",
