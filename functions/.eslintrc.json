@@ -1,6 +1,9 @@
 {
-	"extends": "@gizmo-dev/eslint-config",
+	"extends": [
+		"plugin:@gizmo-dev/typescript"
+	],
 	"parserOptions": {
+		"ecmaVersion": 2020,
 		"project": [ "./tsconfig.json" ]
 	}
 }
