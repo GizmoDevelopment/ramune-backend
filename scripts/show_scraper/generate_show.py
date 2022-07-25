@@ -4,7 +4,7 @@ import time
 import json
 
 CDN_ENDPOINT = "https://cdn.gizmo.moe/ramune"
-JIKAN_ENDPOINT = "https://api.jikan.moe/v3"
+JIKAN_ENDPOINT = "https://api.jikan.moe/v4"
 
 show = {
 	"id": "",
