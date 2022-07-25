@@ -32,19 +32,18 @@ for season_index, mal_id in enumerate(mal_id_list):
 	}
 
 	# Fetch season information
-	mal_response = requests.get(JIKAN_ENDPOINT + "/anime/" + mal_id)
-	mal_response = mal_response.json()
+	mal_response_season = requests.get(JIKAN_ENDPOINT + "/anime/" + mal_id)
+	mal_response_season = mal_response_season.json()["data"]
 
 	# Only list first season's description
 	if mal_id_list.index(mal_id) == 0:
-		show["description"] = mal_response["synopsis"].replace("[Written by MAL Rewrite]", "(Source: MyAnimeList)")
+		show["description"] = mal_response_season["synopsis"].replace("[Written by MAL Rewrite]", "(Source: MyAnimeList)")
 
 	time.sleep(2)
 
 	# Fetch season episode list
-	mal_response = requests.get(JIKAN_ENDPOINT + "/anime/" + mal_id + "/episodes")
-	mal_response = mal_response.json()
-	mal_anime_episodes = mal_response["episodes"]
+	mal_response_episodes = requests.get(JIKAN_ENDPOINT + "/anime/" + mal_id + "/episodes")
+	mal_response_episodes = mal_response_episodes.json()["data"]
 
 	# Create episodes
 	for _, mal_anime_episode in enumerate(mal_response_episodes):
