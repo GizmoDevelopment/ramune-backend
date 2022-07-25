@@ -14,7 +14,11 @@ show = {
 }
 
 show["title"] = input("Enter show title: ")
-show["id"] = re.sub(r'\s', "_", show["title"]).lower()
+
+show_title_no_special_symbols = re.sub(r'[^\w]', "_", show["title"]).lower()
+show_title_no_duplicate_underscores = re.sub(r'_{2,}', "_", show_title_no_special_symbols)
+
+show["id"] = show_title_no_duplicate_underscores
 
 mal_id_list = input("Enter MAL ID(s): ").split(",")
 
