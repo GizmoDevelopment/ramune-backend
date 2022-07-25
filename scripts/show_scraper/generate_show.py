@@ -52,7 +52,7 @@ for season_index, mal_id in enumerate(mal_id_list):
 		season["episodes"].append({
 			"id": episode_id,
 			"title": mal_anime_episode["title"],
-			"subtitles": [ "en", "ja" ],
+			"subtitles": [ "en" ],
 			"duration": 0,
 			"data": {}
 		})
