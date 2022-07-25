@@ -39,7 +39,8 @@ for season_index, mal_id in enumerate(mal_id_list):
 	if mal_id_list.index(mal_id) == 0:
 		show["description"] = mal_response_season["synopsis"].replace("[Written by MAL Rewrite]", "(Source: MyAnimeList)")
 
-	time.sleep(2)
+	# Avoid ratelimits
+	time.sleep(3)
 
 	# Fetch season episode list
 	mal_response_episodes = requests.get(JIKAN_ENDPOINT + "/anime/" + mal_id + "/episodes")
