@@ -22,10 +22,10 @@ show["id"] = show_title_no_duplicate_underscores
 
 mal_id_list = input("Enter MAL ID(s): ").split(",")
 
-for index, mal_id in enumerate(mal_id_list):
+for season_index, mal_id in enumerate(mal_id_list):
 
 	season = {
-		"id": index + 1,
+		"id": season_index + 1,
 		"episodes": []
 	}
 
