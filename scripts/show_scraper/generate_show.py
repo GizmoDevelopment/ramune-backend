@@ -61,7 +61,7 @@ for season_index, mal_id in enumerate(mal_id_list):
 
 	show["seasons"].append(season)
 
-	print("Finished Season " + str(index + 1))
+	print("Finished Season #%i (ID: %s)" % (season_index + 1, mal_id))
 
 file = open("show.json", "x")
 file.write(json.dumps(show))
