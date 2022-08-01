@@ -11,33 +11,48 @@ const rl = readline.createInterface({
 
 async function extractData (file) {
 
-	const res = JSON.parse((await ffprobe([
+	await ffprobe([
 		"-v", "error",
 		"-print_format", "json",
 		"-show_format",
 		"-show_chapters",
 		"-show_streams",
 		"-i", file
-	])).toString());
+	])
 
 	const data = {
 		duration: 0
 	};
 
-	const duration = Number(res.streams?.[0]?.duration);
+	try {
 
-	if (!isNaN(duration)) {
-		data.duration = Number(duration.toFixed(1));
-	}
+		const res = JSON.parse((await ffprobe([
+			"-v", "error",
+			"-print_format", "json",
+			"-show_format",
+			"-show_chapters",
+			"-show_streams",
+			"-i", file
+		])).toString());
+	
+		const duration = Number(res.streams?.[0]?.duration);
+	
+		if (!isNaN(duration)) {
+			data.duration = Number(duration.toFixed(1));
+		}
+	
+		if (res.chapters) {
+			res.chapters.forEach(chapter => {
+				if (chapter.tags.title === "OP" || chapter.tags.title === "Opening") {
+					data.OP = chapter.start / 1000;
+				} else if (chapter.tags.title === "ED" || chapter.tags.title === "Ending") {
+					data.ED = chapter.start / 1000;
+				}
+			});
+		}
 
-	if (res.chapters) {
-		res.chapters.forEach(chapter => {
-			if (chapter.tags.title === "OP") {
-				data.OP = chapter.start / 1000;
-			} else if (chapter.tags.title === "ED") {
-				data.ED = chapter.start / 1000;
-			}
-		});
+	} catch (err) {
+		console.error(err);
 	}
 
 	return data;
@@ -60,8 +75,10 @@ function ffprobe (args, options = {}) {
 			}
 		});
 
-		ffprobeProcess.stdin.on("error", rej);
-		ffprobeProcess.stdout.on("error", rej);
+		ffprobeProcess.stdin.on("error", err => rej(err.toString()));
+		ffprobeProcess.stdout.on("error", err => rej(err.toString()));
+		ffprobeProcess.stderr.on("error", err => rej(err.toString()));
+		ffprobeProcess.stderr.on("data", err => rej(err.toString()));
 
 		ffprobeProcess.stdout.on("data", data => {
 
@@ -97,6 +114,8 @@ rl.question("Path to show.json: ", showDataPath => {
 
 	rl.question("Path to episode directory: ", async episodeDirectory => {
 		rl.question("Do you want OP/ED timestamps? (Y\\n) ", async timestampChoice => {
+
+			episodeDirectory = path.resolve(episodeDirectory);
 
 			const
 				shouldSaveTimestamps = timestampChoice.toLowerCase() === "y" || timestampChoice.trim().length === 0;
@@ -158,7 +177,7 @@ rl.question("Path to show.json: ", showDataPath => {
 				});
 			}
 
-			console.log(_episodeData);
+			console.log(showData.seasons[0].episodes);
 			fs.writeFileSync(showDataPath, JSON.stringify(showData));
 			process.exit(0);
 		});
