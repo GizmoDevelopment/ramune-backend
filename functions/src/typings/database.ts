@@ -10,6 +10,7 @@ export interface StoredShow {
 
 export interface StoredSeason {
 	id: number;
+	source: string;
 	episodes: StoredEpisode[];
 }
 
