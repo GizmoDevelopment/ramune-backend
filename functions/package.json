@@ -31,7 +31,7 @@
 		"@types/cors": "^2.8.12",
 		"@types/node": "^14.18.21",
 		"eslint": "^8.20.0",
-		"firebase-functions-test": "^2.2.0",
+		"firebase-functions-test": "^2.3.0",
 		"ts-patch": "^2.0.1",
 		"typescript": "^4.7.4",
 		"typescript-transform-paths": "^3.3.1"
