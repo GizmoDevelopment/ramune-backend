@@ -2,7 +2,7 @@
 	"name": "functions",
 	"version": "1.2.0",
 	"scripts": {
-		"prepare": "ts-patch install -s",
+		"prepare": "npx ts-patch install -s",
 		"lint": "eslint src",
 		"build": "rm -rf ./lib && tsc",
 		"serve": "npm run build && firebase emulators:start --only functions",
