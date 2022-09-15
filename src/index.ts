@@ -31,3 +31,5 @@ app.get("/dango", (_: unknown, res: Response) => {
 app.get("/shows", returnAllShows);
 app.get("/shows/:showId", returnRequestedShow);
 app.get("/shows/:showId/raw", returnRequestedShow);
+
+app.listen(8080);
