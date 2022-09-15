@@ -21,7 +21,6 @@ WORKDIR /usr/production
 COPY --from=preparation /usr/production/package.json ./
 COPY --from=preparation /usr/production/pnpm-lock.yaml ./
 COPY --from=preparation /usr/production/build ./build
-COPY config.json ./
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile --prod --ignore-scripts
