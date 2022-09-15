@@ -1,6 +1,7 @@
 // Modules
 import express from "express";
 import cors from "cors";
+import ratelimit from "express-rate-limit";
 
 // Routes
 import { returnAllShows, returnRequestedShow } from "@routes/shows";
@@ -14,6 +15,13 @@ const app = express();
 app.use(cors({
 	methods: [ "GET" ],
 	origin: "*"
+}));
+
+app.use(ratelimit({
+	windowMs: 1 * 60 * 1000,
+	max: 20,
+	standardHeaders: true,
+	legacyHeaders: false
 }));
 
 app.get("/dango", (_: unknown, res: Response) => {
