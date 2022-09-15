@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"target": "ES2021",
+		"moduleResolution": "Node",
+		"module": "CommonJS",
+		"outDir": "./build",
+		"baseUrl": "./src",
+		"strict": true,
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"paths": {
+			"@routes/*": ["routes/*"],
+			"@utils/*": ["utils/*"],
+			"@typings/*": ["typings/*"],
+			"@config/*": ["config/*"]
+		},
+		"plugins": [
+			{ "transform": "typescript-transform-paths" }
+		]
+	},
+	"include": [
+		"./src/**/*"
+	]
+}
