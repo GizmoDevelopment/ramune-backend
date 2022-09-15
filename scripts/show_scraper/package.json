@@ -1,0 +1,14 @@
+{
+  "name": "show_scraper",
+  "version": "1.0.0",
+  "description": "I'm sorry",
+  "scripts": {
+    "upload": "node -r dotenv/config upload_show_map.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "firebase-admin": "^9.5.0"
+  }
+}
