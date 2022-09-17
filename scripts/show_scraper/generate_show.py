@@ -31,8 +31,10 @@ for season_index, mal_id in enumerate(mal_id_list):
 		"episodes": []
 	}
 
+	mal_anime_endpoint = f"{JIKAN_ENDPOINT}/anime/{mal_id}"
+
 	# Fetch season information
-	mal_response_season = requests.get(JIKAN_ENDPOINT + "/anime/" + mal_id)
+	mal_response_season = requests.get(mal_anime_endpoint)
 	mal_response_season = mal_response_season.json()["data"]
 
 	# Only list first season's description
@@ -43,7 +45,7 @@ for season_index, mal_id in enumerate(mal_id_list):
 	time.sleep(3)
 
 	# Fetch season episode list
-	mal_response_episodes = requests.get(JIKAN_ENDPOINT + "/anime/" + mal_id + "/episodes")
+	mal_response_episodes = requests.get(f"{mal_anime_endpoint}/episodes")
 	mal_response_episodes = mal_response_episodes.json()
 	
 	episodes = []
@@ -60,7 +62,7 @@ for season_index, mal_id in enumerate(mal_id_list):
 				# Avoid ratelimits
 				time.sleep(3)
 
-				mal_response_episodes_page = requests.get(f"{JIKAN_ENDPOINT}/anime/{mal_id}/episodes?page={page_number}")
+				mal_response_episodes_page = requests.get(f"{mal_anime_endpoint}/episodes?page={page_number}")
 				mal_response_episodes_page = mal_response_episodes_page.json()
 
 				episodes.extend(mal_response_episodes_page["data"])
