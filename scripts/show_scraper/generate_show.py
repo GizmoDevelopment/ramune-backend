@@ -44,10 +44,29 @@ for season_index, mal_id in enumerate(mal_id_list):
 
 	# Fetch season episode list
 	mal_response_episodes = requests.get(JIKAN_ENDPOINT + "/anime/" + mal_id + "/episodes")
-	mal_response_episodes = mal_response_episodes.json()["data"]
+	mal_response_episodes = mal_response_episodes.json()
+	
+	episodes = []
+	
+	episodes.extend(mal_response_episodes["data"])
+
+	if "pagination" in mal_response_episodes:
+
+		last_page_number = mal_response_episodes["pagination"]["last_visible_page"]
+
+		if last_page_number > 1:
+			for page_number in range(2, last_page_number + 1):
+
+				# Avoid ratelimits
+				time.sleep(3)
+
+				mal_response_episodes_page = requests.get(f"{JIKAN_ENDPOINT}/anime/{mal_id}/episodes?page={page_number}")
+				mal_response_episodes_page = mal_response_episodes_page.json()
+
+				episodes.extend(mal_response_episodes_page["data"])
 
 	# Create episodes
-	for _, mal_anime_episode in enumerate(mal_response_episodes):
+	for _, mal_anime_episode in enumerate(episodes):
 
 		season["episodes"].append({
 			"id": episode_id,
