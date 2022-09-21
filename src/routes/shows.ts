@@ -2,6 +2,7 @@
 import ISO6391 from "iso-639-1";
 import type { Request, Response } from "express";
 import type { DocumentSnapshot } from "@google-cloud/firestore";
+import logger from "@gizmo-dev/logger";
 
 // Utils
 import db from "@config/database";
@@ -114,9 +115,9 @@ export async function returnAllShows (_: Request, res: Response): Promise<void> 
 	} catch (err: unknown) {
 
 		if (typeof err === "string") {
-			console.error(Error(err));
+			logger.error(Error(err));
 		} else {
-			console.error(err);
+			logger.error(err);
 		}
 
 		res.status(500).json({ type: "error", message: "Something went wrong" });
@@ -161,9 +162,9 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 	} catch (err: unknown) {
 
 		if (typeof err === "string") {
-			console.error(Error(err));
+			logger.error(Error(err));
 		} else {
-			console.error(err);
+			logger.error(err);
 		}
 
 		res.status(500).json({ type: "error", message: "Something went wrong" });
