@@ -24,7 +24,7 @@
     "typescript-transform-paths": "^3.3.1"
   },
   "dependencies": {
-    "@gizmo-dev/logger": "^1.0.0",
+    "@gizmo-dev/logger": "^1.0.1",
     "@google-cloud/firestore": "5",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",

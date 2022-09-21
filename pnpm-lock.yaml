@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@gizmo-dev/eslint-plugin': ^3.3.1
-  '@gizmo-dev/logger': ^1.0.0
+  '@gizmo-dev/logger': ^1.0.1
   '@google-cloud/firestore': '5'
   '@types/cors': ^2.8.12
   '@types/express': ^4.17.14
@@ -18,7 +18,7 @@ specifiers:
   typescript-transform-paths: ^3.3.1
 
 dependencies:
-  '@gizmo-dev/logger': 1.0.0
+  '@gizmo-dev/logger': 1.0.1
   '@google-cloud/firestore': 5.0.2
   cors: 2.8.5
   dotenv: 16.0.2
@@ -142,8 +142,8 @@ packages:
       - typescript
     dev: true
 
-  /@gizmo-dev/logger/1.0.0:
-    resolution: {integrity: sha512-Ugh3OWKC970bypJT5G1fQuQ+iiajCwzrImKzd7GQs2UCjlL+bYcSztHB1hInf7fAWXFJ6zT4u/e82DejZlFbBQ==}
+  /@gizmo-dev/logger/1.0.1:
+    resolution: {integrity: sha512-R8UFbx29Beccj43ORGpUpIWx4lQWVX6UP88YBO3Tks9i8aFZ4HEK5vxXWZiA02i3qBn0q9Hr70sxDQISLfz0QA==}
     engines: {node: '>=14.x'}
     dev: false
 
