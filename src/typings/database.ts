@@ -3,7 +3,6 @@ import type { EpisodeEffect, ShowFormat } from "@typings/show";
 
 export interface StoredShow {
 	title: string;
-	mal_id: number;
 	description: string;
 	format?: ShowFormat;
 	seasons: StoredSeason[];
@@ -11,6 +10,7 @@ export interface StoredShow {
 
 export interface StoredSeason {
 	id: number;
+	mal_id: number;
 	source: string;
 	episodes: StoredEpisode[];
 }

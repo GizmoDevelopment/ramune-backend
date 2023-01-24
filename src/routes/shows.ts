@@ -40,7 +40,7 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 			// Convert types and inject missing properties
 			constructedShow.seasons = showData.seasons.map((season: StoredSeason): Season => {
 				return {
-					...season,
+					id: season.id,
 					episodes: season.episodes.map((episode: StoredEpisode): Episode => {
 
 						const

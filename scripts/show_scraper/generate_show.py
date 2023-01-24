@@ -28,6 +28,7 @@ for season_index, mal_id in enumerate(mal_id_list):
 
 	season = {
 		"id": season_index + 1,
+		"mal_id": int(mal_id),
 		"episodes": []
 	}
 
