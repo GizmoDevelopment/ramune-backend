@@ -54,6 +54,28 @@ export function getEpisodeById (show: Show | StoredShow, episodeId: number): Epi
 	return null;
 }
 
+export function getSeasonFromEpisodeId (show: StoredShow, episodeId: number): StoredSeason | null;
+export function getSeasonFromEpisodeId (show: Show, episodeId: number): Season | null;
+export function getSeasonFromEpisodeId (show: Show | StoredShow, episodeId: number): Season | StoredSeason | null {
+
+	let accumulativeLength = 0;
+
+	for (let i = 0; i <= show.seasons.length; i++) {
+
+		const season = show.seasons[i];
+
+		if (season) {
+
+			accumulativeLength += season.episodes.length;
+
+			if (episodeId <= accumulativeLength) {
+				return season;
+			}
+		}
+	}
+
+	return null;
+}
 
 export async function fetchEpisodeChapters (showMalId: number, episodeId: number, duration: number): Promise<EpisodeChapters> {
 
