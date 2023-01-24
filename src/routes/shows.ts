@@ -134,29 +134,30 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 			showQuery = db.collection("shows").doc(showId),
 			showDocument = await showQuery.get();
 
-		if (showDocument.exists) {
-			if (req.originalUrl.match(/\/raw$/i)) {
-
-				const showData = showDocument.data() as StoredShow | undefined;
-
-				if (showData) {
-					res.status(200).json({ type: "success", data: { ...showData, id: showDocument.id } });
-				} else {
-					res.status(400).json({ type: "error", message: "Something went wrong" });
-				}
-
-			} else {
-
-				const show = constructShowFromDocument(showDocument, true);
-
-				if (show) {
-					res.status(200).json({ type: "success", data: show });
-				} else {
-					res.status(404).json({ type: "error", message: "Show not found" });
-				}
-			}
-		} else {
+		if (!showDocument.exists) {
 			res.status(404).json({ type: "error", message: "Show not found" });
+			return;
+		}
+
+		if (req.originalUrl.match(/\/raw$/i)) {
+
+			const showData = showDocument.data() as StoredShow | undefined;
+
+			if (showData) {
+				res.status(200).json({ type: "success", data: { ...showData, id: showDocument.id } });
+			} else {
+				res.status(400).json({ type: "error", message: "Something went wrong" });
+			}
+
+		} else {
+
+			const show = constructShowFromDocument(showDocument, true);
+
+			if (show) {
+				res.status(200).json({ type: "success", data: show });
+			} else {
+				res.status(404).json({ type: "error", message: "Show not found" });
+			}
 		}
 
 	} catch (err: unknown) {
@@ -182,36 +183,33 @@ export async function returnRequestedEpisodeChapters (req: Request, res: Respons
 			showQuery = db.collection("shows").doc(showId),
 			showDocument = await showQuery.get();
 
-		if (showDocument.exists) {
-			
-			const show = showDocument.data() as StoredShow | undefined;
-
-			if (show) {
-
-				const
-					season = getSeasonFromEpisodeId(show, parseInt(episodeId)),
-					episode = getEpisodeById(show, parseInt(episodeId));
-
-				if (season && episode) {
-
-					const episodeChapters = await fetchEpisodeChapters(season.mal_id, episode.id, episode.duration);
-
-					if (episodeChapters) {
-						res.status(200).json({ type: "success", data: episodeChapters });
-					} else {
-						res.status(404).json({ type: "error", message: "Chapters not found" });
-					}
-
-				} else {
-					res.status(404).json({ type: "error", message: "Episode not found" });
-				}
-
-			} else {
-				res.status(500).json({ type: "error", message: "Something went wrong" });
-			}
-
-		} else {
+		if (!showDocument.exists) {
 			res.status(404).json({ type: "error", message: "Show not found" });
+			return;
+		}
+			
+		const show = showDocument.data() as StoredShow | undefined;
+
+		if (!show) {
+			res.status(500).json({ type: "error", message: "Something went wrong" });
+			return;
+		}
+
+		const
+			season = getSeasonFromEpisodeId(show, parseInt(episodeId)),
+			episode = getEpisodeById(show, parseInt(episodeId));
+
+		if (!season || !episode) {
+			res.status(404).json({ type: "error", message: "Episode not found" });
+			return;
+		}
+
+		const episodeChapters = await fetchEpisodeChapters(season.mal_id, episode.id, episode.duration);
+
+		if (episodeChapters) {
+			res.status(200).json({ type: "success", data: episodeChapters });
+		} else {
+			res.status(404).json({ type: "error", message: "Chapters not found" });
 		}
 
 	} catch (err: unknown) {
