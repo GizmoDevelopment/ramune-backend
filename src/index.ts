@@ -4,7 +4,7 @@ import cors from "cors";
 import ratelimit from "express-rate-limit";
 
 // Routes
-import { returnAllShows, returnRequestedShow } from "@routes/shows";
+import { returnAllShows, returnRequestedShow, returnRequestedEpisodeChapters } from "@routes/shows";
 
 // Types
 import type { Response } from "express";
@@ -31,5 +31,6 @@ app.get("/dango", (_: unknown, res: Response) => {
 app.get("/shows", returnAllShows);
 app.get("/shows/:showId", returnRequestedShow);
 app.get("/shows/:showId/raw", returnRequestedShow);
+app.get("/shows/:showId/:episodeId/chapters", returnRequestedEpisodeChapters);
 
 app.listen(8080);

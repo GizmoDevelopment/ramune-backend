@@ -6,7 +6,7 @@ import logger from "@gizmo-dev/logger";
 
 // Utils
 import db from "@config/database";
-import { getShowCDNEndpoint } from "@utils/shows";
+import { getEpisodeById, getShowCDNEndpoint, fetchEpisodeChapters, getSeasonFromEpisodeId } from "@utils/shows";
 
 // Types
 import type { Show, Episode, Season, ShowHusk, Lyrics } from "@typings/show";
@@ -170,4 +170,58 @@ export async function returnRequestedShow (req: Request, res: Response): Promise
 		res.status(500).json({ type: "error", message: "Something went wrong" });
 	}
 
+}
+
+export async function returnRequestedEpisodeChapters (req: Request, res: Response): Promise<void> {
+	
+	const { showId, episodeId } = req.params;
+
+	try {
+
+		const
+			showQuery = db.collection("shows").doc(showId),
+			showDocument = await showQuery.get();
+
+		if (showDocument.exists) {
+			
+			const show = showDocument.data() as StoredShow | undefined;
+
+			if (show) {
+
+				const
+					season = getSeasonFromEpisodeId(show, parseInt(episodeId)),
+					episode = getEpisodeById(show, parseInt(episodeId));
+
+				if (season && episode) {
+
+					const episodeChapters = await fetchEpisodeChapters(season.mal_id, episode.id, episode.duration);
+
+					if (episodeChapters) {
+						res.status(200).json({ type: "success", data: episodeChapters });
+					} else {
+						res.status(404).json({ type: "error", message: "Chapters not found" });
+					}
+
+				} else {
+					res.status(404).json({ type: "error", message: "Episode not found" });
+				}
+
+			} else {
+				res.status(500).json({ type: "error", message: "Something went wrong" });
+			}
+
+		} else {
+			res.status(404).json({ type: "error", message: "Show not found" });
+		}
+
+	} catch (err: unknown) {
+
+		if (typeof err === "string") {
+			logger.error(Error(err));
+		} else {
+			logger.error(err);
+		}
+
+		res.status(500).json({ type: "error", message: "Something went wrong" });
+	}
 }
