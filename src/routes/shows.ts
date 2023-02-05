@@ -41,7 +41,7 @@ function constructShowFromDocument (doc: DocumentSnapshot, includeEpisodes: bool
 			constructedShow.seasons = showData.seasons.map((season: StoredSeason): Season => {
 				return {
 					id: season.id,
-					source: season.source,
+					source: season.source || "N/A",
 					episodes: season.episodes.map((episode: StoredEpisode): Episode => {
 
 						const
