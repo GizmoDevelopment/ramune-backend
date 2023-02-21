@@ -1,4 +1,4 @@
-FROM node:16 as preparation
+FROM node:19 as preparation
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
 WORKDIR /usr/production
@@ -12,7 +12,7 @@ COPY tsconfig.json ./
 COPY . ./
 RUN pnpm run build
 
-FROM node:16 as start
+FROM node:19 as start
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
 WORKDIR /usr/production
