@@ -8,7 +8,7 @@
   "engines": {
     "node": ">=16"
   },
-  "packageManager": "pnpm@7.28.0",
+  "packageManager": "pnpm@8.3.0",
   "scripts": {
     "prepare": "ts-patch install -s",
     "lint": "eslint ./src/**/*",
