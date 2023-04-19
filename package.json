@@ -16,10 +16,10 @@
     "start": "node -r dotenv/config ./build/index.js"
   },
   "devDependencies": {
-    "@gizmo-dev/eslint-plugin": "^3.3.2",
+    "@gizmo-dev/eslint-plugin": "^3.3.3",
     "@types/cors": "^2.8.13",
     "@types/express": "4.17.17",
-    "@types/node": "^16.18.11",
+    "@types/node": "^16.18.23",
     "eslint": "^8.38.0",
     "ts-patch": "^2.1.0",
     "typescript": "^4.9.5",
@@ -33,7 +33,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-rate-limit": "^6.7.0",
-    "firebase-admin": "^11.6.0",
+    "firebase-admin": "^11.7.0",
     "iso-639-1": "^2.1.15"
   }
 }
