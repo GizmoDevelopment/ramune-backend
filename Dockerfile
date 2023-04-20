@@ -1,32 +1,22 @@
-FROM node:16 as preparation
-LABEL org.opencontainers.image.source https://github.com/GizmoDevelopment/ramune-backend
+# Environment setup
+FROM node:18-alpine
+LABEL org.opencontainers.image.source https://github.com/GizmoDevelopment/ramune-chat
+WORKDIR /opt/production
 
-RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+RUN npm i -g npm@latest pnpm
 
-WORKDIR /usr/production
+# Dependencies
 COPY package.json pnpm-lock.yaml ./
+RUN pnpm fetch
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+ADD . ./
+RUN pnpm install -r --offline
 
 # Build
-COPY tsconfig.json ./
-COPY . ./
-RUN pnpm run build
+RUN pnpm build
+RUN pnpm prune --prod
 
-FROM node:16 as start
-RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
-
-WORKDIR /usr/production
-
-# Set up directory
-COPY --from=preparation /usr/production/package.json ./
-COPY --from=preparation /usr/production/pnpm-lock.yaml ./
-COPY --from=preparation /usr/production/build ./build
-
-# Install dependencies
-RUN pnpm install --frozen-lockfile --prod --ignore-scripts
-
+# Deploy
 ENV RAMUNE_CDN=${RAMUNE_CDN}
 ENV GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
 ENV DATABASE_URL=${DATABASE_URL}
