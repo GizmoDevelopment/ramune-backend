@@ -5,6 +5,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import ratelimit from "express-rate-limit";
+import logger from "@gizmo-dev/logger";
 
 // Routes
 import { returnAllShows, returnRequestedShow, returnRequestedEpisodeChapters } from "@routes/shows";
@@ -26,6 +27,11 @@ app.use(ratelimit({
 	standardHeaders: true,
 	legacyHeaders: false
 }));
+
+app.use((req, res, next) => {
+	logger.info(`[${req.method}] ${req.originalUrl}`);
+	next();
+});
 
 app.get("/dango", (_: unknown, res: Response) => {
 	res.status(200).send("daikazoku");
