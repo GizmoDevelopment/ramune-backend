@@ -4,19 +4,16 @@
 		"moduleResolution": "Node",
 		"module": "CommonJS",
 		"outDir": "./build",
-		"baseUrl": "./src",
 		"strict": true,
 		"sourceMap": true,
 		"esModuleInterop": true,
+		"baseUrl": "./",
 		"paths": {
-			"@routes/*": ["routes/*"],
-			"@utils/*": ["utils/*"],
-			"@typings/*": ["typings/*"],
-			"@config/*": ["config/*"]
-		},
-		"plugins": [
-			{ "transform": "typescript-transform-paths" }
-		]
+			"@routes/*": ["src/routes/*"],
+			"@utils/*": ["src/utils/*"],
+			"@typings/*": ["src/typings/*"],
+			"@config/*": ["src/config/*"]
+		}
 	},
 	"include": [
 		"./src/**/*"
