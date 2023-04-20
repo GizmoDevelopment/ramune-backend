@@ -10,7 +10,7 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm fetch
 
 ADD . ./
-RUN pnpm install -r --offline
+RUN pnpm install --offline
 
 # Build
 RUN pnpm build
