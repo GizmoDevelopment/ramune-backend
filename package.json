@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "eslint ./src/**/*",
     "build": "rm -rf ./build && tsc && tsc-alias",
-    "start": "node -r dotenv/config ./build/index.js"
+    "start": "node ./build/index.js"
   },
   "devDependencies": {
     "@gizmo-dev/eslint-plugin": "^3.3.3",
