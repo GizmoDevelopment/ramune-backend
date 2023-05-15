@@ -46,8 +46,8 @@ devDependencies:
     specifier: ^8.38.0
     version: 8.38.0
   tsc-alias:
-    specifier: ^1.8.5
-    version: 1.8.5
+    specifier: ^1.8.6
+    version: 1.8.6
   typescript:
     specifier: ^5.0.4
     version: 5.0.4
@@ -104,7 +104,7 @@ packages:
       debug: 4.3.4
       espree: 9.5.1
       globals: 13.19.0
-      ignore: 5.2.0
+      ignore: 5.2.4
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       minimatch: 3.1.2
@@ -2626,8 +2626,8 @@ packages:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
     dev: false
 
-  /tsc-alias@1.8.5:
-    resolution: {integrity: sha512-Y3ka0olwSRdbHPyX5kXhYY2aoBKuT53DFdeY+PpQUR4hg5M/b8eIRmC8dL4FBdd0wT366iWc6iDUUGe6QwI7mg==}
+  /tsc-alias@1.8.6:
+    resolution: {integrity: sha512-vq+i6VpE83IeMsSJVcFN03ZBofADhr8/gIJXjxpbnTRfN/MFXy0+SBaKG2o7p95QqXBGkeG98HYz3IkOOveFbg==}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
