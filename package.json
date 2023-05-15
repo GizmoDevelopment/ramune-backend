@@ -15,23 +15,23 @@
     "start": "node ./build/index.js"
   },
   "devDependencies": {
-    "@gizmo-dev/eslint-plugin": "^3.3.3",
+    "@gizmo-dev/eslint-plugin": "^3.3.4",
     "@types/cors": "^2.8.13",
     "@types/express": "4.17.17",
-    "@types/node": "^18.15.12",
-    "eslint": "^8.38.0",
+    "@types/node": "^18.16.9",
+    "eslint": "^8.40.0",
     "tsc-alias": "^1.8.6",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@gizmo-dev/logger": "^1.0.2",
+    "@gizmo-dev/logger": "^1.0.4",
     "@google-cloud/firestore": "^6.5.0",
     "axios": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-rate-limit": "^6.7.0",
-    "firebase-admin": "^11.7.0",
+    "firebase-admin": "^11.8.0",
     "iso-639-1": "^2.1.15"
   }
 }
