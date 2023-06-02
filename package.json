@@ -21,7 +21,7 @@
     "@types/node": "^18.16.16",
     "eslint": "^8.41.0",
     "tsc-alias": "^1.8.6",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.3"
   },
   "dependencies": {
     "@gizmo-dev/logger": "^1.0.4",
