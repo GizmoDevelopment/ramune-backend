@@ -8,7 +8,7 @@
   "engines": {
     "node": ">=v18.16.1"
   },
-  "packageManager": "pnpm@8.6.5",
+  "packageManager": "pnpm@8.6.6",
   "scripts": {
     "lint": "eslint ./src/**/*",
     "build": "rm -rf ./build && tsc && tsc-alias",
