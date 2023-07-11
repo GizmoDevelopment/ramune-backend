@@ -18,8 +18,8 @@ dependencies:
     specifier: ^2.8.5
     version: 2.8.5
   dotenv:
-    specifier: ^16.0.3
-    version: 16.0.3
+    specifier: ^16.3.1
+    version: 16.3.1
   express:
     specifier: ^4.18.2
     version: 4.18.2
@@ -27,8 +27,8 @@ dependencies:
     specifier: ^6.7.1
     version: 6.7.1(express@4.18.2)
   firebase-admin:
-    specifier: ^11.8.0
-    version: 11.8.0
+    specifier: ^11.9.0
+    version: 11.9.0
   iso-639-1:
     specifier: ^2.1.15
     version: 2.1.15
@@ -245,8 +245,8 @@ packages:
     dev: false
     optional: true
 
-  /@google-cloud/storage@6.10.1:
-    resolution: {integrity: sha512-EtLlT0YbXtrbUxaNbEfTyTytrjELtl4i42flf8COg+Hu5+apdNjsFO9XEY39wshxAuVjLf4fCSm7GTSW+BD3gQ==}
+  /@google-cloud/storage@6.11.0:
+    resolution: {integrity: sha512-p5VX5K2zLTrMXlKdS1CiQNkKpygyn7CBFm5ZvfhVj6+7QUsjWvYx9YDMkYXdarZ6JDt4cxiu451y9QUIH82ZTw==}
     engines: {node: '>=12'}
     requiresBuild: true
     dependencies:
@@ -973,8 +973,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /dotenv@16.0.3:
-    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
     dev: false
 
@@ -1325,8 +1325,8 @@ packages:
       path-exists: 4.0.0
     dev: true
 
-  /firebase-admin@11.8.0:
-    resolution: {integrity: sha512-RxO0wWDnuqVikXExhVjnhVaaXpziKCad4D1rOX5c1WJdk1jAu9hfE4rbrFKZQZgF1okZS04kgCBIFJro7xn8NQ==}
+  /firebase-admin@11.9.0:
+    resolution: {integrity: sha512-My7qrInVZFmImX8aTulrp9kgY6d88Wn+ie8UIXKzZ3SJqQQhDwFT7Q3pgQXK9RfdsUtcxJJ3rCK7MWBm4GGtuw==}
     engines: {node: '>=14'}
     dependencies:
       '@fastify/busboy': 1.2.1
@@ -1339,7 +1339,7 @@ packages:
       uuid: 9.0.0
     optionalDependencies:
       '@google-cloud/firestore': 6.6.1
-      '@google-cloud/storage': 6.10.1
+      '@google-cloud/storage': 6.11.0
     transitivePeerDependencies:
       - encoding
       - supports-color
