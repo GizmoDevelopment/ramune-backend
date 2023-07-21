@@ -9,8 +9,8 @@ dependencies:
     specifier: ^1.0.6
     version: 1.0.6
   '@google-cloud/firestore':
-    specifier: ^6.6.1
-    version: 6.6.1
+    specifier: ^6.7.0
+    version: 6.7.0
   axios:
     specifier: ^1.4.0
     version: 1.4.0
@@ -211,8 +211,8 @@ packages:
     engines: {node: '>=v18.16.1'}
     dev: false
 
-  /@google-cloud/firestore@6.6.1:
-    resolution: {integrity: sha512-Z41j2h0mrgBH9qNIVmbRLqGKc6XmdJtWipeKwdnGa/bPTP1gn2SGTrYyWnpfsLMEtzKSYieHPSkAFp5kduF2RA==}
+  /@google-cloud/firestore@6.7.0:
+    resolution: {integrity: sha512-bkH2jb5KkQSUa+NAvpip9HQ+rpYhi77IaqHovWuN07adVmvNXX08gPpvPWEzoXYa/wDjEVI7LiAtCWkJJEYTNg==}
     engines: {node: '>=12.0.0'}
     dependencies:
       fast-deep-equal: 3.1.3
@@ -1331,7 +1331,7 @@ packages:
       node-forge: 1.3.1
       uuid: 9.0.0
     optionalDependencies:
-      '@google-cloud/firestore': 6.6.1
+      '@google-cloud/firestore': 6.7.0
       '@google-cloud/storage': 6.11.0
     transitivePeerDependencies:
       - encoding
