@@ -24,7 +24,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@gizmo-dev/logger": "^1.0.6",
+    "@gizmo-dev/logger": "^1.0.7",
     "@google-cloud/firestore": "^6.7.0",
     "axios": "^1.4.0",
     "cors": "^2.8.5",

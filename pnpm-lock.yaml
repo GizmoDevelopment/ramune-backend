@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@gizmo-dev/logger':
-    specifier: ^1.0.6
-    version: 1.0.6
+    specifier: ^1.0.7
+    version: 1.0.7
   '@google-cloud/firestore':
     specifier: ^6.7.0
     version: 6.7.0
@@ -206,9 +206,9 @@ packages:
       - typescript
     dev: true
 
-  /@gizmo-dev/logger@1.0.6:
-    resolution: {integrity: sha512-c4cyBl1AVDEAUjC1+ICjSJSNQJDULBJjKbSAPdrMuuZZMXtPoVn4cVu46bDSc2sPvILQrJpGukkZ5Jop80ze8w==}
-    engines: {node: '>=v18.16.1'}
+  /@gizmo-dev/logger@1.0.7:
+    resolution: {integrity: sha512-1HglQmmQlmCUJAYBqpZZXUiYwP7imkwfENxKeQI5tfxV/2WC+4amF4ROu2PWhkkxZ+34YNndgJ4AkNZMytOgig==}
+    engines: {node: '>=v18.17.1'}
     dev: false
 
   /@google-cloud/firestore@6.7.0:
