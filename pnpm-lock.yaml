@@ -50,8 +50,8 @@ devDependencies:
     specifier: ^8.49.0
     version: 8.49.0
   tsc-alias:
-    specifier: ^1.8.7
-    version: 1.8.7
+    specifier: ^1.8.8
+    version: 1.8.8
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
@@ -2584,8 +2584,8 @@ packages:
       typescript: 5.2.2
     dev: true
 
-  /tsc-alias@1.8.7:
-    resolution: {integrity: sha512-59Q/zUQa3miTf99mLbSqaW0hi1jt4WoG8Uhe5hSZJHQpSoFW9eEwvW7jlKMHXWvT+zrzy3SN9PE/YBhQ+WVydA==}
+  /tsc-alias@1.8.8:
+    resolution: {integrity: sha512-OYUOd2wl0H858NvABWr/BoSKNERw3N9GTi3rHPK8Iv4O1UyUXIrTTOAZNHsjlVpXFOhpJBVARI1s+rzwLivN3Q==}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
