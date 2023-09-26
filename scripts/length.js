@@ -112,74 +112,172 @@ rl.question("Path to show.json: ", showDataPath => {
 
 	const showData = require(showDataPath);
 
-	rl.question("Path to episode directory: ", async episodeDirectory => {
+	rl.question("Path to show directory: ", async showDirectory => {
 		rl.question("Do you want OP/ED timestamps? (Y\\n) ", async timestampChoice => {
+			
+			const seasonDirectory = path.resolve(showDirectory, "seasons");
 
-			episodeDirectory = path.resolve(episodeDirectory);
+			if (fs.existsSync(seasonDirectory)) {
 
-			const
-				shouldSaveTimestamps = timestampChoice.toLowerCase() === "y" || timestampChoice.trim().length === 0;
+				const seasons = fs
+					.readdirSync(seasonDirectory, { withFileTypes: true })
+					.filter(d => d.isDirectory())
+					.map(d => d.name);
 
-			const
-				episodeList = fs.readdirSync(episodeDirectory),
-				_episodeData = {},
-				episodePromises = [];
+				const seasonPromises = [];
 
-			episodeList.forEach(episodeFile => {
+				seasons.forEach(season => {
+					seasonPromises.push(async function () {
 
-				const p = extractData(path.join(episodeDirectory, episodeFile, `${episodeFile}.mp4`));
+						const episodeDirectory = path.resolve(seasonDirectory, season, "episodes");
+					
+						if (fs.existsSync(episodeDirectory)) {
 
-				p.then(duration => {
-					_episodeData[parseInt(episodeFile)] = duration;
-				});
+							const
+								shouldSaveTimestamps = timestampChoice.toLowerCase() === "y" || timestampChoice.trim().length === 0;
 
-				episodePromises.push(p);
-			});
+							const
+								episodeList = fs.readdirSync(episodeDirectory),
+								_episodeData = {},
+								episodePromises = [];
 
-			await Promise.all(episodePromises);
+							episodeList.forEach(episodeFile => {
 
-			for (const _episodeIndex in _episodeData) {
-				showData.seasons.forEach((season, seasonIndex) => {
-					season.episodes.forEach((episode, episodeIndex) => {
-						if (episode.id === parseInt(_episodeIndex)) {
+								const p = extractData(path.join(episodeDirectory, episodeFile, `${episodeFile}.mp4`));
 
-							const _ep = _episodeData[_episodeIndex];
+								p.then(duration => {
+									_episodeData[parseInt(episodeFile)] = duration;
+								});
 
-							if (_ep.duration > 0) {
-								episode.duration = _ep.duration;
-							}
+								episodePromises.push(p);
+							});
 
-							if (shouldSaveTimestamps) {
+							await Promise.all(episodePromises);
 
-								if ("OP" in _ep || "ED" in _ep) {
-									episode.data.lyrics = [];
-								}
+							for (const _episodeIndex in _episodeData) {
+								showData.seasons.forEach((season, seasonIndex) => {
+									season.episodes.forEach((episode, episodeIndex) => {
+										if (episode.id === parseInt(_episodeIndex)) {
 
-								if ("OP" in _ep) {
-									episode.data.lyrics.push({
-										id: "op1",
-										start: _ep.OP
+											const _ep = _episodeData[_episodeIndex];
+
+											if (_ep.duration > 0) {
+												episode.duration = _ep.duration;
+											}
+
+											if (shouldSaveTimestamps) {
+
+												if ("OP" in _ep || "ED" in _ep) {
+													episode.data.lyrics = [];
+												}
+
+												if ("OP" in _ep) {
+													episode.data.lyrics.push({
+														id: "op1",
+														start: _ep.OP
+													});
+												}
+
+												if ("ED" in _ep) {
+													episode.data.lyrics.push({
+														id: "ed1",
+														start: _ep.ED
+													});
+												}
+
+											}
+
+											showData.seasons[seasonIndex].episodes[episodeIndex] = episode;
+										}
 									});
-								}
-
-								if ("ED" in _ep) {
-									episode.data.lyrics.push({
-										id: "ed1",
-										start: _ep.ED
-									});
-								}
-
+								});
 							}
-
-							showData.seasons[seasonIndex].episodes[episodeIndex] = episode;
+							
 						}
-					});
+					}());
 				});
-			}
 
-			console.log(showData.seasons[0].episodes);
-			fs.writeFileSync(showDataPath, JSON.stringify(showData));
-			process.exit(0);
+				await Promise.all(seasonPromises);
+
+				console.log(showData.seasons);
+				fs.writeFileSync(showDataPath, JSON.stringify(showData));
+				process.exit(0);
+
+			} else {
+				console.error("Invalid show directory");
+				process.exit(1);
+			}
 		});
 	});
+
+	// rl.question("Path to episode directory: ", async episodeDirectory => {
+	// 	rl.question("Do you want OP/ED timestamps? (Y\\n) ", async timestampChoice => {
+
+	// 		episodeDirectory = path.resolve(episodeDirectory);
+
+	// 		const
+	// 			shouldSaveTimestamps = timestampChoice.toLowerCase() === "y" || timestampChoice.trim().length === 0;
+
+	// 		const
+	// 			episodeList = fs.readdirSync(episodeDirectory),
+	// 			_episodeData = {},
+	// 			episodePromises = [];
+
+	// 		episodeList.forEach(episodeFile => {
+
+	// 			const p = extractData(path.join(episodeDirectory, episodeFile, `${episodeFile}.mp4`));
+
+	// 			p.then(duration => {
+	// 				_episodeData[parseInt(episodeFile)] = duration;
+	// 			});
+
+	// 			episodePromises.push(p);
+	// 		});
+
+	// 		await Promise.all(episodePromises);
+
+	// 		for (const _episodeIndex in _episodeData) {
+	// 			showData.seasons.forEach((season, seasonIndex) => {
+	// 				season.episodes.forEach((episode, episodeIndex) => {
+	// 					if (episode.id === parseInt(_episodeIndex)) {
+
+	// 						const _ep = _episodeData[_episodeIndex];
+
+	// 						if (_ep.duration > 0) {
+	// 							episode.duration = _ep.duration;
+	// 						}
+
+	// 						if (shouldSaveTimestamps) {
+
+	// 							if ("OP" in _ep || "ED" in _ep) {
+	// 								episode.data.lyrics = [];
+	// 							}
+
+	// 							if ("OP" in _ep) {
+	// 								episode.data.lyrics.push({
+	// 									id: "op1",
+	// 									start: _ep.OP
+	// 								});
+	// 							}
+
+	// 							if ("ED" in _ep) {
+	// 								episode.data.lyrics.push({
+	// 									id: "ed1",
+	// 									start: _ep.ED
+	// 								});
+	// 							}
+
+	// 						}
+
+	// 						showData.seasons[seasonIndex].episodes[episodeIndex] = episode;
+	// 					}
+	// 				});
+	// 			});
+	// 		}
+
+	// 		console.log(showData.seasons[0].episodes);
+	// 		fs.writeFileSync(showDataPath, JSON.stringify(showData));
+	// 		process.exit(0);
+	// 	});
+	// });
 });
