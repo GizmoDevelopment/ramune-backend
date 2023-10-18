@@ -38,8 +38,8 @@ devDependencies:
     specifier: ^3.3.8
     version: 3.3.8(eslint@8.51.0)(typescript@5.2.2)
   '@types/cors':
-    specifier: ^2.8.14
-    version: 2.8.14
+    specifier: ^2.8.15
+    version: 2.8.15
   '@types/express':
     specifier: 4.17.19
     version: 4.17.19
@@ -405,8 +405,8 @@ packages:
     dependencies:
       '@types/node': 18.18.5
 
-  /@types/cors@2.8.14:
-    resolution: {integrity: sha512-RXHUvNWYICtbP6s18PnOCaqToK8y14DnLd75c6HfyKf228dxy7pHNOQkxPtvXKp/hINFMDjbYzsj63nnpPMSRQ==}
+  /@types/cors@2.8.15:
+    resolution: {integrity: sha512-n91JxbNLD8eQIuXDIChAN1tCKNWCEgpceU9b7ZMbFA+P+Q4yIeh80jizFLEvolRPc1ES0VdwFlGv+kJTSirogw==}
     dependencies:
       '@types/node': 18.18.5
     dev: true
