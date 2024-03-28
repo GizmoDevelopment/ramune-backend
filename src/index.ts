@@ -18,7 +18,9 @@ const app = express();
 
 app.use(cors({
 	methods: [ "GET" ],
-	origin: "*"
+	origin: process.env.NODE_ENV !== "production"
+		? "*"
+		: process.env.RAMUNE_WEBSITE
 }));
 
 app.use(ratelimit({
