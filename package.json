@@ -21,8 +21,10 @@
     "@types/express": "4.17.21",
     "@types/node": "^18.19.30",
     "eslint": "^9.0.0",
+    "globals": "^15.0.0",
     "tsc-alias": "^1.8.8",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.4",
+    "typescript-eslint": "^7.5.0"
   },
   "dependencies": {
     "@gizmo-dev/logger": "^1.0.8",
