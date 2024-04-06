@@ -5,6 +5,7 @@
   "author": "Tjaz (GizmoTjaz)",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=18.20.1"
   },
@@ -16,13 +17,15 @@
     "start": "node ./build/index.js"
   },
   "devDependencies": {
-    "@gizmo-dev/eslint-plugin": "^3.3.8",
+    "@gizmo-dev/eslint-plugin": "^4.0.0",
     "@types/cors": "^2.8.17",
     "@types/express": "4.17.21",
     "@types/node": "^18.19.30",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
     "tsc-alias": "^1.8.8",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.4",
+    "typescript-eslint": "^7.5.0"
   },
   "dependencies": {
     "@gizmo-dev/logger": "^1.0.8",
