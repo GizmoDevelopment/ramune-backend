@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.8
         version: 1.0.8
       '@google-cloud/firestore':
-        specifier: ^7.6.0
-        version: 7.6.0
+        specifier: ^7.7.0
+        version: 7.7.0
       axios:
         specifier: ^1.6.8
         version: 1.6.8
@@ -127,8 +127,8 @@ packages:
     resolution: {integrity: sha512-4b6KkM50zAa5qj6ZQT/pgjBDSvSoR9q9NTXGDtDdcFAldBlRnUv6L9uL7DW7MXMy0/Xlj6FL9IPN5kYs5I6xAg==}
     engines: {node: '>=v18.18.0'}
 
-  '@google-cloud/firestore@7.6.0':
-    resolution: {integrity: sha512-WUDbaLY8UnPxgwsyIaxj6uxCtSDAaUyvzWJykNH5rZ9i92/SZCsPNNMN0ajrVpAR81hPIL4amXTaMJ40y5L+Yg==}
+  '@google-cloud/firestore@7.7.0':
+    resolution: {integrity: sha512-41/vBFXOeSYjFI/2mJuJrDwg2umGk+FDrI/SCGzBRUe+UZWDN4GoahIbGZ19YQsY0ANNl6DRiAy4wD6JezK02g==}
     engines: {node: '>=14.0.0'}
 
   '@google-cloud/paginator@5.0.0':
@@ -1625,7 +1625,7 @@ snapshots:
 
   '@gizmo-dev/logger@1.0.8': {}
 
-  '@google-cloud/firestore@7.6.0':
+  '@google-cloud/firestore@7.7.0':
     dependencies:
       fast-deep-equal: 3.1.3
       functional-red-black-tree: 1.0.1
@@ -2372,7 +2372,7 @@ snapshots:
       node-forge: 1.3.1
       uuid: 9.0.1
     optionalDependencies:
-      '@google-cloud/firestore': 7.6.0
+      '@google-cloud/firestore': 7.7.0
       '@google-cloud/storage': 7.10.2
     transitivePeerDependencies:
       - encoding
