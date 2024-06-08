@@ -27,8 +27,8 @@ importers:
         specifier: ^4.19.2
         version: 4.19.2
       express-rate-limit:
-        specifier: ^7.3.0
-        version: 7.3.0(express@4.19.2)
+        specifier: ^7.3.1
+        version: 7.3.1(express@4.19.2)
       firebase-admin:
         specifier: ^12.1.1
         version: 12.1.1
@@ -666,8 +666,8 @@ packages:
     resolution: {integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==}
     engines: {node: '>=6'}
 
-  express-rate-limit@7.3.0:
-    resolution: {integrity: sha512-ZPfWlcQQ1PsZonB/vqksOsBQV74z5osi/QcdoBCyKJXl/wOVjS1yRDmvkpMM52KJeLbiF2+djwVEnEgVCDdvtw==}
+  express-rate-limit@7.3.1:
+    resolution: {integrity: sha512-BbaryvkY4wEgDqLgD18/NSy2lDO2jTuT9Y8c1Mpx0X63Yz0sYd5zN6KPe7UvpuSVvV33T6RaE1o1IVZQjHMYgw==}
     engines: {node: '>= 16'}
     peerDependencies:
       express: 4 || 5 || ^5.0.0-beta.1
@@ -2234,7 +2234,7 @@ snapshots:
 
   expand-template@2.0.3: {}
 
-  express-rate-limit@7.3.0(express@4.19.2):
+  express-rate-limit@7.3.1(express@4.19.2):
     dependencies:
       express: 4.19.2
 
