@@ -72,8 +72,8 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
 
-  '@eslint-community/regexpp@4.10.0':
-    resolution: {integrity: sha512-Cu96Sd2By9mCNTx2iyKOmq10v22jUVQv0lQnlGNy16oE9589yE+QADPbrMGCkA51cKZSg3Pu/aTJVTGfL/qjUA==}
+  '@eslint-community/regexpp@4.10.1':
+    resolution: {integrity: sha512-Zm2NGpWELsQAD1xsJzGQpYfvICSsFkEpU0jxBjfdC6uNEWXcHnfs9hScFWtXVDVl+rBQJGrl4g1vcKIejpH9dA==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
   '@eslint/config-array@0.15.1':
@@ -151,8 +151,8 @@ packages:
     resolution: {integrity: sha512-Orxzlfb9c67A15cq2JQEyVc7wEsmFBmHjZWZYQMUyJ1qivXyMwdyNOs9odi79hze+2zqdTtu1E19IM/FtqZ10g==}
     engines: {node: '>=14'}
 
-  '@google-cloud/storage@7.11.1':
-    resolution: {integrity: sha512-tibLSvgw7nDohMyIelt26kBpJ59YGWA2Rzep++DFNzEzKaSuCSp56Se9iM13ZlM3j5nLzR21IBkpRN58CmvCIw==}
+  '@google-cloud/storage@7.11.2':
+    resolution: {integrity: sha512-jJOrKyOdujfrSF8EJODW9yY6hqO4jSTk6eVITEj2gsD43BSXuDlnMlLOaBUQhXL29VGnSkxDgYl5tlFhA6LKSA==}
     engines: {node: '>=14'}
 
   '@grpc/grpc-js@1.10.8':
@@ -254,8 +254,8 @@ packages:
   '@types/node@18.19.34':
     resolution: {integrity: sha512-eXF4pfBNV5DAMKGbI02NnDtWrQ40hAN558/2vvS4gMpMIxaf6JmD7YjnZbq0Q9TDSSkKBamime8ewRoomHdt4g==}
 
-  '@types/node@20.14.0':
-    resolution: {integrity: sha512-5cHBxFGJx6L4s56Bubp4fglrEpmyJypsqI6RgzMfBHWUJQGWAAi8cWcgetEbZXHYXo9C2Fa4EEds/uSyS4cxmA==}
+  '@types/node@20.14.2':
+    resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
 
   '@types/qs@6.9.15':
     resolution: {integrity: sha512-uXHQKES6DQKKCLh441Xv/dwxOq1TVS3JPUMlEqoEglvlhR6Mxnlew/Xq/LRVHpLyk7iK3zODe1qYHIMltO7XGg==}
@@ -820,8 +820,8 @@ packages:
     resolution: {integrity: sha512-ol+oSa5NbcGdDqA+gZ3G3mev59OHBZksBTxY/tYwjtcp1H/scAFwJfSQU9/1RALoyZ7FslNbke8j4i3ipwlyuQ==}
     engines: {node: '>=14'}
 
-  google-gax@4.3.5:
-    resolution: {integrity: sha512-zXRSGgHp33ottCQMdYlKEFX/MhWkzKVX5P3Vpmx+DW6rtseLILzp3V0YV5Rh4oQzzkM0BH9+nJIyX01EUgmd3g==}
+  google-gax@4.3.6:
+    resolution: {integrity: sha512-z3MR+pE6WqU+tnKtkJl4c723EYY7Il4fcSNgEbehzUJpcNWkca9AyoC2pdBWmEa0cda21VRpUBb4s6VSATiUKg==}
     engines: {node: '>=14'}
 
   gopd@1.0.1:
@@ -1411,8 +1411,8 @@ packages:
     resolution: {integrity: sha512-Ibv4KAWfFkFdKJxnWfVtdOmB0Zi1RJVxcbPGiCDsFpCQSsmpWyuzHG3rQyI5YkobWwxFPEyQfu1hdo4qLG2zPw==}
     hasBin: true
 
-  tslib@2.6.2:
-    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
+  tslib@2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
   tunnel-agent@0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
@@ -1539,7 +1539,7 @@ snapshots:
       eslint: 9.4.0
       eslint-visitor-keys: 3.4.3
 
-  '@eslint-community/regexpp@4.10.0': {}
+  '@eslint-community/regexpp@4.10.1': {}
 
   '@eslint/config-array@0.15.1':
     dependencies:
@@ -1578,7 +1578,7 @@ snapshots:
   '@firebase/component@0.6.7':
     dependencies:
       '@firebase/util': 1.9.6
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@firebase/database-compat@1.0.5':
     dependencies:
@@ -1587,7 +1587,7 @@ snapshots:
       '@firebase/database-types': 1.0.3
       '@firebase/logger': 0.4.2
       '@firebase/util': 1.9.6
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@firebase/database-types@1.0.3':
     dependencies:
@@ -1602,15 +1602,15 @@ snapshots:
       '@firebase/logger': 0.4.2
       '@firebase/util': 1.9.6
       faye-websocket: 0.11.4
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@firebase/logger@0.4.2':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@firebase/util@1.9.6':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@gizmo-dev/eslint-plugin@4.0.0(eslint-plugin-vue@9.26.0(eslint@9.4.0))(eslint@9.4.0)(typescript-eslint@7.12.0(eslint@9.4.0)(typescript@5.4.5))':
     dependencies:
@@ -1625,7 +1625,7 @@ snapshots:
     dependencies:
       fast-deep-equal: 3.1.3
       functional-red-black-tree: 1.0.1
-      google-gax: 4.3.5
+      google-gax: 4.3.6
       protobufjs: 7.3.0
     transitivePeerDependencies:
       - encoding
@@ -1643,7 +1643,7 @@ snapshots:
   '@google-cloud/promisify@4.0.0':
     optional: true
 
-  '@google-cloud/storage@7.11.1':
+  '@google-cloud/storage@7.11.2':
     dependencies:
       '@google-cloud/paginator': 5.0.2
       '@google-cloud/projectify': 4.0.0
@@ -1763,7 +1763,7 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@20.14.0':
+  '@types/node@20.14.2':
     dependencies:
       undici-types: 5.26.5
 
@@ -1793,7 +1793,7 @@ snapshots:
 
   '@typescript-eslint/eslint-plugin@7.12.0(@typescript-eslint/parser@7.12.0(eslint@9.4.0)(typescript@5.4.5))(eslint@9.4.0)(typescript@5.4.5)':
     dependencies:
-      '@eslint-community/regexpp': 4.10.0
+      '@eslint-community/regexpp': 4.10.1
       '@typescript-eslint/parser': 7.12.0(eslint@9.4.0)(typescript@5.4.5)
       '@typescript-eslint/scope-manager': 7.12.0
       '@typescript-eslint/type-utils': 7.12.0(eslint@9.4.0)(typescript@5.4.5)
@@ -2168,7 +2168,7 @@ snapshots:
   eslint@9.4.0:
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.4.0)
-      '@eslint-community/regexpp': 4.10.0
+      '@eslint-community/regexpp': 4.10.1
       '@eslint/config-array': 0.15.1
       '@eslint/eslintrc': 3.1.0
       '@eslint/js': 9.4.0
@@ -2338,7 +2338,7 @@ snapshots:
       '@fastify/busboy': 2.1.1
       '@firebase/database-compat': 1.0.5
       '@firebase/database-types': 1.0.3
-      '@types/node': 20.14.0
+      '@types/node': 20.14.2
       farmhash: 3.3.1
       jsonwebtoken: 9.0.2
       jwks-rsa: 3.1.0
@@ -2347,7 +2347,7 @@ snapshots:
       uuid: 9.0.1
     optionalDependencies:
       '@google-cloud/firestore': 7.8.0
-      '@google-cloud/storage': 7.11.1
+      '@google-cloud/storage': 7.11.2
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -2454,7 +2454,7 @@ snapshots:
       - encoding
       - supports-color
 
-  google-gax@4.3.5:
+  google-gax@4.3.6:
     dependencies:
       '@grpc/grpc-js': 1.10.8
       '@grpc/proto-loader': 0.7.13
@@ -3071,7 +3071,7 @@ snapshots:
       normalize-path: 3.0.0
       plimit-lit: 1.6.1
 
-  tslib@2.6.2: {}
+  tslib@2.6.3: {}
 
   tunnel-agent@0.6.0:
     dependencies:
