@@ -46,8 +46,8 @@ importers:
         specifier: 4.17.21
         version: 4.17.21
       '@types/node':
-        specifier: ^18.19.38
-        version: 18.19.38
+        specifier: ^18.19.39
+        version: 18.19.39
       eslint:
         specifier: ^9.5.0
         version: 9.5.0
@@ -251,8 +251,8 @@ packages:
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
 
-  '@types/node@18.19.38':
-    resolution: {integrity: sha512-SApYXUF7si4JJ+lO2o6X60OPOnA6wPpbiB09GMCkQ+JAwpa9hxUVG8p7GzA08TKQn5OhzK57rj1wFj+185YsGg==}
+  '@types/node@18.19.39':
+    resolution: {integrity: sha512-nPwTRDKUctxw3di5b4TfT3I0sWDiWoPQCZjXhvdkINntwr8lcoVCKsTgnXeRubKIlfnV+eN/HYk6Jb40tbcEAQ==}
 
   '@types/node@20.14.2':
     resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
@@ -1642,21 +1642,21 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
 
   '@types/caseless@0.12.5': {}
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
 
   '@types/cors@2.8.17':
     dependencies:
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
 
   '@types/express-serve-static-core@4.19.3':
     dependencies:
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
       '@types/qs': 6.9.15
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -1672,13 +1672,13 @@ snapshots:
 
   '@types/jsonwebtoken@9.0.6':
     dependencies:
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
 
   '@types/long@4.0.2': {}
 
   '@types/mime@1.3.5': {}
 
-  '@types/node@18.19.38':
+  '@types/node@18.19.39':
     dependencies:
       undici-types: 5.26.5
 
@@ -1693,19 +1693,19 @@ snapshots:
   '@types/request@2.48.12':
     dependencies:
       '@types/caseless': 0.12.5
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
       '@types/tough-cookie': 4.0.5
       form-data: 2.5.1
 
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
       '@types/send': 0.17.4
 
   '@types/tough-cookie@4.0.5': {}
@@ -2703,7 +2703,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
       long: 5.2.3
 
   protobufjs@7.3.2:
@@ -2718,7 +2718,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.19.38
+      '@types/node': 18.19.39
       long: 5.2.3
 
   proxy-addr@2.0.7:
