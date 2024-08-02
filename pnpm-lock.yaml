@@ -52,8 +52,8 @@ importers:
         specifier: ^9.8.0
         version: 9.8.0
       globals:
-        specifier: ^15.8.0
-        version: 15.8.0
+        specifier: ^15.9.0
+        version: 15.9.0
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
@@ -776,8 +776,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.8.0:
-    resolution: {integrity: sha512-VZAJ4cewHTExBWDHR6yptdIBlx9YSSZuwojj9Nt5mBRXQzrKakDsVKQ1J63sklLvzAJm0X5+RpO4i3Y2hcOnFw==}
+  globals@15.9.0:
+    resolution: {integrity: sha512-SmSKyLLKFbSr6rptvP8izbyxJL4ILwqO9Jg23UA0sDlGlu58V59D1//I3vlc0KJphVdUR7vMjHIplYnzBxorQA==}
     engines: {node: '>=18'}
 
   globby@11.1.0:
@@ -1531,7 +1531,7 @@ snapshots:
     dependencies:
       eslint: 9.8.0
       eslint-plugin-vue: 9.27.0(eslint@9.8.0)
-      globals: 15.8.0
+      globals: 15.9.0
       typescript-eslint: 7.18.0(eslint@9.8.0)(typescript@5.5.4)
 
   '@gizmo-dev/logger@1.0.8': {}
@@ -2315,7 +2315,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.8.0: {}
+  globals@15.9.0: {}
 
   globby@11.1.0:
     dependencies:
