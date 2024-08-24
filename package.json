@@ -24,8 +24,7 @@
     "eslint": "^9.9.1",
     "globals": "^15.9.0",
     "tsc-alias": "^1.8.10",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^7.18.0"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@gizmo-dev/logger": "^1.0.8",
