@@ -4,7 +4,7 @@ dotenv.config();
 // Modules
 import express from "express";
 import cors from "cors";
-import ratelimit from "express-rate-limit";
+import { rateLimit } from "express-rate-limit";
 import logger from "@gizmo-dev/logger";
 
 // Routes
@@ -23,7 +23,7 @@ app.use(cors({
 		: process.env.RAMUNE_WEBSITE
 }));
 
-app.use(ratelimit({
+app.use(rateLimit({
 	windowMs: 1 * 60 * 1000,
 	max: 20,
 	standardHeaders: true,
