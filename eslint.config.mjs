@@ -1,9 +1,8 @@
 // Modules
 import globals from "globals";
 import { configs } from "@gizmo-dev/eslint-plugin";
-import tslint from "typescript-eslint";
 
-export default tslint.config(
+export default [
 	...configs.ts,
 	{
 		languageOptions: {
@@ -12,8 +11,8 @@ export default tslint.config(
 				...globals.node
 			},
 			parserOptions: {
-				project: "tsconfig.json"
+				project: true
 			}
 		}
 	}
-);
+];
