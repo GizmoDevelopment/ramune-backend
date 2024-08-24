@@ -5,7 +5,6 @@
   "author": "Tjaz (GizmoTjaz)",
   "license": "MIT",
   "private": true,
-  "type": "module",
   "engines": {
     "node": ">=18.20.4"
   },
