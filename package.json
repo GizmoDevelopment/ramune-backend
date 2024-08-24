@@ -16,7 +16,7 @@
     "start": "node ./build/index.js"
   },
   "devDependencies": {
-    "@gizmo-dev/eslint-plugin": "^4.0.0",
+    "@gizmo-dev/eslint-plugin": "^5.0.0",
     "@types/cors": "^2.8.17",
     "@types/express": "4.17.21",
     "@types/node": "^18.19.45",
