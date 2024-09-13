@@ -30,8 +30,8 @@ importers:
         specifier: ^7.4.0
         version: 7.4.0(express@4.21.0)
       firebase-admin:
-        specifier: ^12.4.0
-        version: 12.4.0
+        specifier: ^12.5.0
+        version: 12.5.0
       iso-639-1:
         specifier: ^3.1.3
         version: 3.1.3
@@ -773,8 +773,8 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
-  firebase-admin@12.4.0:
-    resolution: {integrity: sha512-3HOHqJxNmFv0JgK3voyMQgmcibhJN4LQfZfhnZGb6pcONnZxejki4nQ1twsoJlGaIvgQWBtO7rc5mh/cqlOJNA==}
+  firebase-admin@12.5.0:
+    resolution: {integrity: sha512-ad8vnlPcuuZN9scSgY8UnAxPI4mzP2/Q+dsrVLTf+j3h7bIq0FOelDCDGz4StgKJdk244v2kpOxqJjPG3grBHg==}
     engines: {node: '>=14'}
 
   flat-cache@4.0.1:
@@ -2405,7 +2405,7 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  firebase-admin@12.4.0:
+  firebase-admin@12.5.0:
     dependencies:
       '@fastify/busboy': 3.0.0
       '@firebase/database-compat': 1.0.7
