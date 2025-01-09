@@ -23,7 +23,7 @@
     "eslint": "^9.17.0",
     "globals": "^15.14.0",
     "tsc-alias": "^1.8.10",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "@gizmo-dev/logger": "^1.0.8",
