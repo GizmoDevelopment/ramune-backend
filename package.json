@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": ">=20.18.0"
+    "node": ">=20.18.3"
   },
   "packageManager": "pnpm@9.15.5",
   "scripts": {
@@ -19,7 +19,7 @@
     "@gizmo-dev/eslint-plugin": "^5.0.6",
     "@types/cors": "^2.8.17",
     "@types/express": "5.0.0",
-    "@types/node": "^20.16.10",
+    "@types/node": "^20.17.19",
     "eslint": "^9.20.1",
     "globals": "^15.15.0",
     "tsc-alias": "^1.8.10",
