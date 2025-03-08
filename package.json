@@ -20,7 +20,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "5.0.0",
     "@types/node": "^20.17.23",
-    "eslint": "^9.21.0",
+    "eslint": "^9.22.0",
     "globals": "^15.15.0",
     "tsc-alias": "^1.8.11",
     "typescript": "^5.8.2"
