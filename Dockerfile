@@ -1,5 +1,5 @@
 # Environment setup
-FROM node:20.18.3-alpine
+FROM node:22.14.0-alpine
 LABEL org.opencontainers.image.source https://github.com/GizmoDevelopment/ramune-chat
 WORKDIR /opt/production
 
