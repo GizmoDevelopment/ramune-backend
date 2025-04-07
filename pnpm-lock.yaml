@@ -46,7 +46,7 @@ importers:
         specifier: 5.0.1
         version: 5.0.1
       '@types/node':
-        specifier: ^20.17.24
+        specifier: ^20.17.30
         version: 20.17.30
       eslint:
         specifier: ^9.24.0
