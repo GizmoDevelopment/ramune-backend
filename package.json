@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@gizmo-dev/logger": "^1.0.8",
-    "@google-cloud/firestore": "^7.11.0",
+    "@google-cloud/firestore": "^7.11.1",
     "axios": "^1.9.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
