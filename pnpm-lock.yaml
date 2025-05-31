@@ -46,8 +46,8 @@ importers:
         specifier: 5.0.1
         version: 5.0.1
       '@types/node':
-        specifier: ^20.17.24
-        version: 20.17.50
+        specifier: ^20.17.57
+        version: 20.17.57
       eslint:
         specifier: ^9.28.0
         version: 9.28.0
@@ -294,8 +294,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@20.17.50':
-    resolution: {integrity: sha512-Mxiq0ULv/zo1OzOhwPqOA13I81CV/W3nvd3ChtQZRT5Cwz3cr0FKo/wMSsbTqL3EXpaBAEQhva2B8ByRkOIh9A==}
+  '@types/node@20.17.57':
+    resolution: {integrity: sha512-f3T4y6VU4fVQDKVqJV4Uppy8c1p/sVvS3peyqxyWnzkqXFJLRU7Y1Bl7rMS1Qe9z0v4M6McY0Fp9yBsgHJUsWQ==}
 
   '@types/node@22.15.21':
     resolution: {integrity: sha512-EV/37Td6c+MgKAbkcLG6vqZ2zEYHD7bvSrzqqs2RIhbA6w3x+Dqz8MZM3sP6kGTeLrdoOgKZe+Xja7tUB2DNkQ==}
@@ -1739,30 +1739,30 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
 
   '@types/caseless@0.12.5': {}
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
 
   '@types/cors@2.8.18':
     dependencies:
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
 
   '@types/estree@1.0.7': {}
 
   '@types/express-serve-static-core@4.19.6':
     dependencies:
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
 
   '@types/express-serve-static-core@5.0.6':
     dependencies:
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -1787,7 +1787,7 @@ snapshots:
   '@types/jsonwebtoken@9.0.9':
     dependencies:
       '@types/ms': 2.1.0
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
 
   '@types/long@4.0.2': {}
 
@@ -1795,7 +1795,7 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@20.17.50':
+  '@types/node@20.17.57':
     dependencies:
       undici-types: 6.19.8
 
@@ -1810,19 +1810,19 @@ snapshots:
   '@types/request@2.48.12':
     dependencies:
       '@types/caseless': 0.12.5
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
       '@types/tough-cookie': 4.0.5
       form-data: 2.5.3
 
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
       '@types/send': 0.17.4
 
   '@types/tough-cookie@4.0.5': {}
@@ -2825,7 +2825,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 20.17.50
+      '@types/node': 20.17.57
       long: 5.3.2
 
   proxy-addr@2.0.7:
